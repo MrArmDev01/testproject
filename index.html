@@ -3,60 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MR. ARM | Executive Portfolio</title>
-    <!-- Google Fonts + Icons -->
+    <title>MR. ARM | Discord Manager Portfolio | Azure Noir</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Chart.js for trend graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #010101; color: #f0f4ff; overflow-x: hidden; }
-        .premium-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 30% 40%, #0a0f1f 0%, #000000 100%); z-index: -2; }
-        .premium-bg::before { content: ''; position: absolute; width: 200%; height: 200%; background: radial-gradient(circle at 40% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 60%); animation: slowDrift 30s infinite alternate; }
-        @keyframes slowDrift { 0% { transform: translate(-5%, -3%) scale(1); opacity: 0.4; } 100% { transform: translate(5%, 3%) scale(1.3); opacity: 0.9; } }
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .particle { position: absolute; background: rgba(59,130,246,0.25); border-radius: 50%; animation: floatParticle 18s infinite linear; }
-        @keyframes floatParticle { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
-        .luxury-nav { position: fixed; top: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 1100px; background: rgba(8, 12, 25, 0.8); backdrop-filter: blur(24px); border-radius: 80px; border: 0.5px solid rgba(59, 130, 246, 0.4); padding: 0.7rem 2rem; display: flex; justify-content: center; gap: 2.2rem; z-index: 1000; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
-        .luxury-nav a { color: #cbd5f0; text-decoration: none; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); padding: 0.4rem 0; position: relative; }
-        .luxury-nav a::before { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, #3b82f6, #60a5fa); transition: all 0.3s ease; transform: translateX(-50%); }
-        .luxury-nav a:hover::before, .luxury-nav a.active::before { width: 80%; }
-        .luxury-nav a:hover, .luxury-nav a.active { color: white; text-shadow: 0 0 10px #3b82f6; }
-        .page-container { max-width: 1400px; margin: 0 auto; padding: 7rem 2rem 4rem 2rem; }
-        .page { display: none; animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .active-page { display: block; }
-        @keyframes pageEnter { 0% { opacity: 0; transform: scale(0.98) translateY(25px); filter: blur(3px); } 100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
-        .hero-title { font-size: 4rem; font-weight: 800; line-height: 1.2; letter-spacing: -1.5px; }
-        .grad-lux { background: linear-gradient(135deg, #ffffff, #60a5fa, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3s infinite; }
-        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
-        .stat-row { display: flex; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap; }
-        .stat-card { background: rgba(15, 25, 45, 0.55); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 1rem 2rem; border: 0.5px solid rgba(59,130,246,0.3); transition: 0.3s; }
-        .stat-card:hover { transform: translateY(-3px); border-color: #3b82f6; }
-        .refresh-btn { background: rgba(59,130,246,0.2); border: 1px solid #3b82f6; padding: 0.5rem 1.2rem; border-radius: 2rem; cursor: pointer; font-size: 0.8rem; transition: 0.2s; }
-        .refresh-btn:hover { background: #3b82f6; transform: scale(1.02); }
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
-        .project-card-lux { background: rgba(10, 16, 28, 0.7); backdrop-filter: blur(14px); border-radius: 2rem; padding: 1.8rem; border: 0.5px solid rgba(59,130,246,0.2); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
-        .project-card-lux:hover { border-color: #3b82f6; transform: translateY(-8px) scale(1.01); box-shadow: 0 30px 40px -20px rgba(0, 100, 255, 0.4); }
-        .game-stats { display: flex; gap: 1.2rem; margin: 1rem 0; padding: 0.8rem 0; border-top: 1px solid rgba(59,130,246,0.2); border-bottom: 1px solid rgba(59,130,246,0.2); flex-wrap: wrap; }
-        .stat-bubble { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; background: rgba(0, 0, 0, 0.5); padding: 0.5rem 1.2rem; border-radius: 40px; }
-        .stat-bubble i { font-size: 1rem; color: #60a5fa; }
-        .stat-number { font-size: 1.2rem; font-weight: 800; color: #ffffff; }
-        .btn-group { display: flex; gap: 1rem; margin-top: 1.2rem; flex-wrap: wrap; }
-        .btn-discord, .btn-roblox { padding: 0.6rem 1.3rem; border-radius: 2rem; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.25s; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #00050f;
+            color: #eef5ff;
+            overflow-x: hidden;
+        }
+
+        /* === PREMIUM BACKGROUND AZURE/BLACK === */
+        .premium-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 20% 30%, #001838 0%, #000000 100%);
+            z-index: -2;
+        }
+
+        .premium-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 40% 50%, rgba(0, 160, 255, 0.12) 0%, transparent 60%);
+            animation: driftAzure 28s infinite alternate;
+        }
+
+        @keyframes driftAzure {
+            0% { transform: translate(-5%, -3%) scale(1); opacity: 0.5; }
+            100% { transform: translate(5%, 3%) scale(1.2); opacity: 0.9; }
+        }
+
+        /* floating particles cyan */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(0, 180, 255, 0.3);
+            border-radius: 50%;
+            animation: floatParticle 20s infinite linear;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* === LUXURY NAVIGATION === */
+        .luxury-nav {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 88%;
+            max-width: 1150px;
+            background: rgba(2, 10, 22, 0.75);
+            backdrop-filter: blur(20px);
+            border-radius: 70px;
+            border: 0.5px solid rgba(0, 160, 255, 0.5);
+            padding: 0.7rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            z-index: 1000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .luxury-nav a {
+            color: #cce5ff;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            padding: 0.4rem 0;
+            position: relative;
+        }
+
+        .luxury-nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00a0ff, #3b82f6);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .luxury-nav a:hover::before, .luxury-nav a.active::before {
+            width: 70%;
+        }
+
+        .luxury-nav a:hover, .luxury-nav a.active {
+            color: white;
+            text-shadow: 0 0 8px #00a0ff;
+        }
+
+        /* page container */
+        .page-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 7rem 2rem 4rem;
+        }
+
+        .page {
+            display: none;
+            animation: pageEnter 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        @keyframes pageEnter {
+            0% { opacity: 0; transform: scale(0.97) translateY(20px); filter: blur(3px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        /* hero */
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+        }
+
+        .grad-azure {
+            background: linear-gradient(135deg, #ffffff, #00a6ff, #0055aa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(0, 30, 60, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 1rem 2rem;
+            border: 0.5px solid rgba(0, 160, 255, 0.4);
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: #00a0ff;
+            box-shadow: 0 5px 15px rgba(0,160,255,0.2);
+        }
+
+        /* refresh button */
+        .refresh-btn {
+            background: rgba(0, 160, 255, 0.2);
+            border: 1px solid #00a0ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            color: #cce5ff;
+        }
+        .refresh-btn:hover {
+            background: #00a0ff;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        /* project grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: rgba(5, 15, 30, 0.65);
+            backdrop-filter: blur(14px);
+            border-radius: 2rem;
+            padding: 1.6rem;
+            border: 0.5px solid rgba(0, 160, 255, 0.25);
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .project-card:hover {
+            border-color: #00a0ff;
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 160, 255, 0.3);
+            background: rgba(8, 25, 45, 0.8);
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 0.8rem 0;
+            border-top: 1px solid rgba(0,160,255,0.3);
+            border-bottom: 1px solid rgba(0,160,255,0.3);
+            flex-wrap: wrap;
+        }
+
+        .stat-bubble {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 30, 60, 0.7);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+        .stat-bubble i { color: #00a0ff; width: 1.2rem; }
+        .stat-number { font-weight: 800; font-size: 1.2rem; color: white; }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .btn-discord, .btn-roblox {
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
         .btn-discord { background: #5865F2; color: white; }
-        .btn-roblox { background: #1f2b4e; color: white; border: 0.5px solid #3b82f6; }
-        .btn-discord:hover, .btn-roblox:hover { transform: scale(1.03); filter: brightness(1.1); }
-        .chart-container { background: rgba(8, 14, 26, 0.5); border-radius: 1.5rem; padding: 1rem; margin-top: 1rem; border: 0.5px solid #1e3a8a; }
-        canvas { max-height: 170px; width: 100%; }
-        .contact-lux { background: rgba(8, 14, 26, 0.6); backdrop-filter: blur(20px); border-radius: 2rem; padding: 2rem; border: 0.5px solid #1e3a8a; max-width: 700px; margin: 2rem auto; }
-        input, textarea { width: 100%; background: #0a1022; border: 1px solid #1f2a4a; padding: 0.9rem; border-radius: 1.2rem; color: white; margin-top: 0.8rem; font-family: inherit; }
-        input:focus, textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 12px rgba(59,130,246,0.3); }
-        button { background: linear-gradient(95deg, #1e40af, #3b82f6); width: 100%; padding: 0.9rem; border-radius: 2rem; font-weight: bold; border: none; color: white; margin-top: 1rem; cursor: pointer; }
-        footer { text-align: center; padding: 2rem; margin-top: 3rem; border-top: 0.5px solid #11223b; font-size: 0.75rem; color: #7e8fb0; }
-        .loading-overlay { text-align: center; padding: 2rem; }
-        .live-badge { background: #10b981; border-radius: 20px; padding: 0.2rem 0.6rem; font-size: 0.6rem; margin-left: 0.5rem; vertical-align: middle; }
-        @media (max-width: 800px) { .luxury-nav { gap: 1rem; width: 95%; padding: 0.5rem 0.8rem; overflow-x: auto; } .hero-title { font-size: 2.2rem; } .page-container { padding-top: 6rem; } .project-grid { grid-template-columns: 1fr; } }
+        .btn-roblox { background: #0a2a44; border: 0.5px solid #00a0ff; color: white; }
+        .btn-discord:hover, .btn-roblox:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        .chart-container {
+            background: rgba(0, 15, 30, 0.5);
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        /* contact premium */
+        .contact-lux {
+            background: rgba(2, 12, 25, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 0.5px solid #0088ff;
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: #061a2f;
+            border: 1px solid #1e4a76;
+            padding: 0.9rem;
+            border-radius: 1.2rem;
+            color: white;
+            margin-top: 0.8rem;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #00a0ff;
+            box-shadow: 0 0 12px rgba(0,160,255,0.3);
+        }
+        button {
+            background: linear-gradient(95deg, #0055aa, #00a0ff);
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            border: none;
+            color: white;
+            margin-top: 1rem;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 0.5px solid #114477;
+            font-size: 0.75rem;
+            color: #88aadd;
+        }
+        .live-badge {
+            background: #00cc88;
+            border-radius: 20px;
+            padding: 0.2rem 0.7rem;
+            font-size: 0.65rem;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+        @media (max-width: 800px) {
+            .luxury-nav { gap: 1rem; width: 95%; padding: 0.5rem 0.8rem; overflow-x: auto; }
+            .hero-title { font-size: 2.2rem; }
+            .page-container { padding-top: 6rem; }
+            .project-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -72,96 +348,103 @@
 </div>
 
 <div class="page-container">
+    <!-- HOME -->
     <div id="home-page" class="page active-page">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
             <div>
-                <div class="hero-title">EXECUTIVE <span class="grad-lux">DISCORD MANAGER</span><br>COMMUNITY ARCHITECT</div>
-                <p style="margin: 1.5rem 0; color: #b4cdff; max-width: 550px;">Strategic leadership for high-scale Roblox & Discord ecosystems. Live player tracking from Roblox API.</p>
+                <div class="hero-title">DISCORD <span class="grad-azure">MANAGER</span><br>COMMUNITY ARCHITECT</div>
+                <p style="margin: 1.5rem 0; color: #bbddff; max-width: 550px;">Orchestrating high-scale Roblox & Discord communities. Real-time player analytics, exclusive management.</p>
                 <div class="stat-row">
                     <div class="stat-card"><strong>15+</strong><br>Servers</div>
-                    <div class="stat-card"><strong>30K+</strong><br>Members</div>
-                    <div class="stat-card"><strong>3</strong><br>Live Games</div>
+                    <div class="stat-card"><strong>35K+</strong><br>Members</div>
+                    <div class="stat-card"><strong>4</strong><br>Release Games</div>
                 </div>
             </div>
-            <div style="background: rgba(0,80,200,0.1); border-radius: 2rem; padding: 1.8rem; border: 0.5px solid #2b6ef0; text-align: center;">
+            <div style="background: rgba(0, 80, 160, 0.2); border-radius: 2rem; padding: 1.8rem; border: 1px solid #00a0ff; text-align: center;">
                 <i class="fab fa-discord" style="font-size: 3rem; color: #5a9eff;"></i>
                 <p style="margin-top: 0.8rem; font-weight: 600;">real_mr.arm</p>
-                <p style="font-size: 0.85rem;">MrArmDev01 · GitHub</p>
+                <p style="font-size: 0.85rem;">Manager since 2022</p>
             </div>
         </div>
-        <footer>Real-time data from Roblox Public API</footer>
+        <footer>Azure Noir · Executive Portfolio</footer>
     </div>
 
+    <!-- RELEASE PROJECTS -->
     <div id="released-page" class="page">
-        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
             <div>
-                <h2 style="font-size: 2rem; font-weight: 600;">RELEASE PROJECTS</h2>
-                <p>Live player counts from Roblox API · Auto-refresh every 60 seconds</p>
+                <h2 style="font-size: 2rem; font-weight: 700;">RELEASE PROJECTS</h2>
+                <p>Live player counts via Roblox API · Auto-refresh every 60s</p>
             </div>
-            <button class="refresh-btn" id="manualRefreshBtn"><i class="fas fa-sync-alt"></i> Refresh Now</button>
+            <button class="refresh-btn" id="manualRefresh"><i class="fas fa-sync-alt"></i> Refresh stats</button>
         </div>
-        <div class="project-grid" id="released-live-grid"></div>
-        <footer>Data source: games.roblox.com/v1/games · Updated real-time from Roblox</footer>
+        <div class="project-grid" id="releaseGrid"></div>
+        <footer>Data source: Roproxy.io · actual active players</footer>
     </div>
 
+    <!-- IN DEVELOPMENT -->
     <div id="dev-page" class="page">
-        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">IN DEVELOPMENT</h2>
-        <div class="project-grid" id="dev-grid"></div>
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">IN DEVELOPMENT</h2>
+        <div class="project-grid" id="devGrid"></div>
     </div>
 
+    <!-- PAST PROJECTS -->
     <div id="past-page" class="page">
-        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">PAST PROJECTS</h2>
-        <div class="project-grid" id="past-grid"></div>
+        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">PAST PROJECTS</h2>
+        <div class="project-grid" id="pastGrid"></div>
     </div>
 
+    <!-- CONTACT -->
     <div id="contact-page" class="page">
         <div class="contact-lux">
-            <h2>Partnership Inquiry</h2>
-            <p>Messages sent directly via Discord webhook</p>
+            <h2><i class="fas fa-paper-plane"></i> Direct Inquiry</h2>
+            <p>Message will be sent to my Discord via secure webhook</p>
             <input type="text" id="contactName" placeholder="Your name / Discord username">
             <input type="text" id="contactSubject" placeholder="Subject">
-            <textarea rows="4" id="contactMsg" placeholder="Describe your proposal..."></textarea>
-            <button id="sendWebhookBtn">Send via Webhook</button>
-            <span id="webhookStatus" style="display: block; font-size: 0.8rem; margin-top: 0.8rem;"></span>
-            <div style="margin-top: 2rem;">
-                <a href="https://discord.gg/Gje7JDtRPT" style="color:#8aabff; margin-right:1.5rem;"><i class="fab fa-discord"></i> Discord Hub</a>
-                <a href="https://github.com/MrArmDev01" style="color:#8aabff;"><i class="fab fa-github"></i> GitHub</a>
+            <textarea rows="4" id="contactMsg" placeholder="Partnership or request details..."></textarea>
+            <button id="sendWebhook"><i class="fab fa-discord"></i> Send via Webhook</button>
+            <span id="webhookStatus" style="display:block; font-size:0.8rem; margin-top:0.8rem;"></span>
+            <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                <a href="https://discord.gg/Gje7JDtRPT" target="_blank" style="color:#7ab3ff;"><i class="fab fa-discord"></i> Discord Hub</a>
+                <a href="https://github.com/MrArmDev01" target="_blank" style="color:#7ab3ff;"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.tiktok.com/@mr.armxso" target="_blank" style="color:#7ab3ff;"><i class="fab fa-tiktok"></i> TikTok</a>
             </div>
+            <p style="margin-top: 1.5rem;"><i class="fas fa-at"></i> Discord: real_mr.arm</p>
         </div>
     </div>
 </div>
 
 <script>
-    // Particles background
+    // floating particles
     function createParticles() {
         const container = document.getElementById('particles');
         if(!container) return;
-        for(let i = 0; i < 50; i++) {
+        for(let i=0;i<60;i++) {
             const p = document.createElement('div');
             p.className = 'particle';
-            const size = Math.random() * 3 + 1;
-            p.style.width = size + 'px';
-            p.style.height = size + 'px';
-            p.style.left = Math.random() * 100 + '%';
-            p.style.animationDelay = Math.random() * 20 + 's';
-            p.style.animationDuration = Math.random() * 15 + 10 + 's';
-            p.style.opacity = Math.random() * 0.4;
+            const s = Math.random() * 4 + 1;
+            p.style.width = s+'px';
+            p.style.height = s+'px';
+            p.style.left = Math.random()*100+'%';
+            p.style.animationDelay = Math.random()*20+'s';
+            p.style.animationDuration = Math.random()*15+10+'s';
+            p.style.opacity = Math.random()*0.5;
             container.appendChild(p);
         }
     }
     createParticles();
 
-    // Webhook logic
+    // ---------- WEBHOOK (unchanged) ----------
     const WEBHOOK_URL = "https://discord.com/api/webhooks/1503653994512257136/JLEjYP83LDss0hAzIPW8dcHbwuGXLPuuvRRN_mIKCTAtw377iarDeCWORmJFdtmEe2Y8";
-    const sendBtn = document.getElementById('sendWebhookBtn');
+    const sendBtn = document.getElementById('sendWebhook');
     const statusSpan = document.getElementById('webhookStatus');
-    if (sendBtn) {
+    if(sendBtn){
         sendBtn.addEventListener('click', async () => {
             const name = document.getElementById('contactName').value.trim();
             const subject = document.getElementById('contactSubject').value.trim();
             const msg = document.getElementById('contactMsg').value.trim();
-            if (!name || !subject || !msg) {
-                statusSpan.innerText = 'Please fill all fields.';
+            if(!name || !subject || !msg) {
+                statusSpan.innerText = 'Please fill all fields';
                 statusSpan.style.color = '#ff8888';
                 return;
             }
@@ -169,165 +452,145 @@
             try {
                 const res = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {'Content-Type':'application/json'},
                     body: JSON.stringify({
                         embeds: [{
                             title: `Portfolio: ${subject}`,
                             description: msg,
-                            color: 0x1e40af,
-                            fields: [{ name: "From", value: name, inline: true }],
-                            footer: { text: "MR.ARM Portfolio" }
+                            color: 0x0088ff,
+                            fields: [{name: "From", value: name, inline: true}],
+                            footer: {text: "MR.ARM Azure Portfolio"}
                         }]
                     })
                 });
-                if (res.ok) {
-                    statusSpan.innerText = 'Sent successfully! I will reply on Discord.';
+                if(res.ok) {
+                    statusSpan.innerText = 'Sent! I will reply on Discord.';
                     statusSpan.style.color = '#88ff88';
-                    document.getElementById('contactName').value = '';
-                    document.getElementById('contactSubject').value = '';
-                    document.getElementById('contactMsg').value = '';
-                } else { statusSpan.innerText = 'Webhook error.'; }
-            } catch(e) { statusSpan.innerText = 'Network error.'; }
+                    document.getElementById('contactName').value='';
+                    document.getElementById('contactSubject').value='';
+                    document.getElementById('contactMsg').value='';
+                } else statusSpan.innerText = 'Webhook error';
+            } catch(e) { statusSpan.innerText = 'Network error'; }
         });
     }
 
-    // Game Data with REAL Roblox IDs
-    const releasedGames = [
+    // ---------- PROJECT DATA ----------
+    // Release projects: Anime Guardian, Anime Reversal, Jood Piece, Godverse Awakening
+    const releaseProjects = [
         { name: "Anime Guardian", role: "Content Creator Manager", discord: "https://discord.gg/animeguardian", robloxUrl: "https://www.roblox.com/games/17282336195/Anime-Guardians", robloxId: "17282336195" },
         { name: "Anime Reversal", role: "Manager", discord: "https://discord.gg/animereversal", robloxUrl: "https://www.roblox.com/games/85535589075948/Anime-Reversal", robloxId: "85535589075948" },
-        { name: "Jood Piece", role: "Manager", discord: "https://discord.gg/joodpiece", robloxUrl: "https://www.roblox.com/games/110029522258215/JOOD-PIECE", robloxId: "110029522258215" }
+        { name: "Jood Piece", role: "Manager", discord: "https://discord.gg/joodpiece", robloxUrl: "https://www.roblox.com/games/110029522258215/JOOD-PIECE", robloxId: "110029522258215" },
+        { name: "Godverse Awakening", role: "Manager", discord: "https://discord.gg/2Exg5b3f46", robloxUrl: "https://www.roblox.com/games/123669682680658/Godverse-Awakening", robloxId: "123669682680658" }
     ];
 
     const devProjects = [
-        { name: "Internity Fectum", role: "Project Manager", discord: "https://discord.gg/WbN2rwv3vT" },
-        { name: "Uma Aegis X", role: "Lead Manager", discord: "https://discord.gg/xsdR893Y6z" },
-        { name: "Anime Zero", role: "Community Manager", discord: "https://discord.gg/VPB5GFEgcb" },
-        { name: "The Other Side", role: "Strategic Manager", discord: "https://discord.gg/sGTFeUPWqk" },
-        { name: "OVERDRIVE!", role: "Event Coordinator", discord: "https://discord.gg/d4MVRcjTbT" }
+        { name: "Internity Fectum", role: "Manager", discord: "https://discord.gg/WbN2rwv3vT" },
+        { name: "Uma Aegis X", role: "Manager", discord: "https://discord.gg/xsdR893Y6z" },
+        { name: "Anime Zero", role: "Manager", discord: "https://discord.gg/VPB5GFEgcb" },
+        { name: "The Other Side", role: "Manager", discord: "https://discord.gg/sGTFeUPWqk" },
+        { name: "OVERDRIVE!", role: "Manager", discord: "https://discord.gg/d4MVRcjTbT" }
     ];
 
     const pastProjects = [
-        { name: "Godverse Awakening", role: "Manager (2024)", discord: "https://discord.gg/2Exg5b3f46", robloxUrl: "https://www.roblox.com/games/123669682680658/Godverse-Awakening" },
         { name: "Anime Seas", role: "Administrator", discord: "https://discord.gg/animeseas" },
         { name: "Ultimate Seat Battle", role: "Manager", discord: "https://discord.gg/8j8NEh32s" },
         { name: "Anime Destiny", role: "Moderator", discord: "https://discord.gg/JMUb8V2pb" },
         { name: "Farm And Survive", role: "Administrator", discord: "https://discord.gg/6E729ymHMu" }
     ];
 
-    let charts = {};
-    let refreshInterval = null;
-
-    // Improved Roblox API fetch using multiple endpoints
-    async function fetchRealRobloxStats(robloxId) {
-        // Try primary endpoint
-        const primaryUrl = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
+    // Roblox API using Roproxy (better CORS & reliability)
+    async function fetchRobloxStats(robloxId) {
         try {
-            const response = await fetch(primaryUrl);
-            const data = await response.json();
-            if (data.data && data.data.length > 0) {
-                const game = data.data[0];
-                let playing = game.playing || 0;
-                let favorites = game.favoritedCount || 0;
-                return { playing, favorites, success: true };
+            const url = `https://api.roprox.io/games/${robloxId}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            if(data && typeof data.playing !== 'undefined') {
+                return { playing: data.playing || 0, favorites: data.favorites || 0 };
             }
-        } catch (error) {
-            console.warn(`Primary API failed for ${robloxId}:`, error);
-        }
-
-        // Try Roproxy as fallback
-        const proxyUrl = `https://api.roprox.io/games/${robloxId}`;
+        } catch(e) { console.warn(e); }
+        // fallback to official endpoint if proxy fails
         try {
-            const proxyResponse = await fetch(proxyUrl);
-            const proxyData = await proxyResponse.json();
-            if (proxyData && typeof proxyData.playing !== 'undefined') {
-                return { playing: proxyData.playing || 0, favorites: proxyData.favorites || 0, success: true };
+            const altUrl = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
+            const altRes = await fetch(altUrl);
+            const altData = await altRes.json();
+            if(altData.data && altData.data[0]) {
+                return { playing: altData.data[0].playing || 0, favorites: altData.data[0].favoritedCount || 0 };
             }
-        } catch (proxyError) {
-            console.warn(`Roproxy failed for ${robloxId}:`, proxyError);
-        }
-
-        return { playing: 0, favorites: 0, success: false };
+        } catch(e) {}
+        return { playing: 0, favorites: 0 };
     }
 
-    // Generate trend based on real data with historical simulation
-    function generateTrendData(currentPlaying) {
-        const labels = ['6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', 'Yesterday', 'Today'];
-        const base = Math.max(10, currentPlaying);
+    // generate trend chart data (simulated but based on current playing)
+    function generateTrend(basePlayers) {
+        const labels = ['6d','5d','4d','3d','2d','1d','Today'];
         let trend = [];
-        for (let i = 0; i < 7; i++) {
-            let multiplier = 0.5 + (i * 0.07);
-            let variation = (Math.sin(i * 0.8) * 0.15 + (Math.random() * 0.1)) * base;
-            let val = Math.floor(base * multiplier + variation);
+        for(let i=0;i<7;i++) {
+            let variation = (Math.sin(i*0.7)*0.15 + (Math.random()*0.1)) * basePlayers;
+            let val = Math.floor(basePlayers * (0.6 + i*0.06) + variation);
             trend.push(Math.max(5, val));
         }
         return { labels, data: trend };
     }
 
-    async function renderReleaseWithRealStats() {
-        const container = document.getElementById('released-live-grid');
-        if (!container) return;
+    let charts = {};
 
-        container.innerHTML = '<div class="loading-overlay"><i class="fas fa-spinner fa-pulse"></i> Fetching live data from Roblox API...</div>';
-
+    async function renderReleaseGrid() {
+        const container = document.getElementById('releaseGrid');
+        if(!container) return;
+        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem;"><i class="fas fa-spinner fa-pulse"></i> Loading live stats...</div>';
+        
         let cardsHtml = '';
-        let statsData = [];
-
-        for (let game of releasedGames) {
-            const stats = await fetchRealRobloxStats(game.robloxId);
-            statsData.push({ game, stats });
+        let statsMap = new Map();
+        for(let game of releaseProjects) {
+            const stats = await fetchRobloxStats(game.robloxId);
+            statsMap.set(game.robloxId, stats);
         }
-
-        for (let item of statsData) {
-            const { game, stats } = item;
+        for(let game of releaseProjects) {
+            const stats = statsMap.get(game.robloxId) || {playing:0, favorites:0};
+            const { labels, data } = generateTrend(stats.playing);
             const chartId = `chart-${game.robloxId}`;
-            const liveClass = stats.playing > 0 ? 'live-badge' : '';
-            const liveText = stats.playing > 0 ? '<span class="live-badge"><i class="fas fa-circle" style="font-size: 0.5rem; vertical-align: middle;"></i> LIVE</span>' : '';
-            const playingFormatted = stats.playing.toLocaleString();
-            const favoritesFormatted = stats.favorites.toLocaleString();
-
+            const liveMark = stats.playing > 0 ? '<span class="live-badge"><i class="fas fa-circle" style="font-size:0.45rem;"></i> LIVE</span>' : '';
             cardsHtml += `
-                <div class="project-card-lux">
-                    <div style="font-size:1.6rem; font-weight:700;">${game.name} ${liveText}</div>
-                    <div style="color:#8aabff; margin:0.2rem 0 0.5rem 0;">${game.role}</div>
+                <div class="project-card">
+                    <div style="font-size:1.5rem; font-weight:700;">${game.name} ${liveMark}</div>
+                    <div style="color:#7ab3ff; margin:0.2rem 0 0.5rem;">${game.role}</div>
                     <div class="game-stats">
-                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number" id="playing-${game.robloxId}">${playingFormatted}</span> <span style="font-size:0.75rem;">playing now</span></div>
-                        <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${favoritesFormatted}</span> <span style="font-size:0.75rem;">favorites</span></div>
+                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number">${stats.playing.toLocaleString()}</span> <span style="font-size:0.7rem;">playing</span></div>
+                        <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${stats.favorites.toLocaleString()}</span> <span style="font-size:0.7rem;">favs</span></div>
                     </div>
                     <div class="chart-container">
-                        <canvas id="${chartId}" style="width:100%; height:160px;"></canvas>
+                        <canvas id="${chartId}" style="width:100%; height:150px;"></canvas>
                     </div>
                     <div class="btn-group">
-                        <a href="${game.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord Server</a>
-                        <a href="${game.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Play Roblox</a>
+                        <a href="${game.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+                        <a href="${game.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>
                     </div>
                 </div>
             `;
         }
-
         container.innerHTML = cardsHtml;
-
-        // Initialize charts
-        for (let item of statsData) {
-            const { game, stats } = item;
-            const { labels, data: trendData } = generateTrendData(stats.playing);
+        
+        // init charts
+        for(let game of releaseProjects) {
+            const stats = statsMap.get(game.robloxId) || {playing:0, favorites:0};
+            const { labels, data } = generateTrend(stats.playing);
             const chartId = `chart-${game.robloxId}`;
             const ctx = document.getElementById(chartId)?.getContext('2d');
-            if (ctx) {
-                if (charts[chartId]) charts[chartId].destroy();
+            if(ctx) {
+                if(charts[chartId]) charts[chartId].destroy();
                 charts[chartId] = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Active Players Trend',
-                            data: trendData,
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59,130,246,0.08)',
-                            borderWidth: 2.5,
-                            pointBackgroundColor: '#60a5fa',
+                            label: 'Active Players',
+                            data: data,
+                            borderColor: '#00a0ff',
+                            backgroundColor: 'rgba(0,160,255,0.08)',
+                            borderWidth: 2,
+                            pointBackgroundColor: '#3b82f6',
                             pointBorderColor: '#ffffff',
                             pointRadius: 3,
-                            pointHoverRadius: 6,
                             tension: 0.3,
                             fill: true
                         }]
@@ -335,27 +598,21 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: true,
-                        plugins: {
-                            legend: { labels: { color: '#bbd9ff', font: { size: 10 } } },
-                            tooltip: { backgroundColor: '#0a1022', titleColor: '#60a5fa' }
-                        },
-                        scales: {
-                            y: { grid: { color: '#1f2a4e' }, ticks: { color: '#9bb5ff', callback: (v) => v.toLocaleString() } },
-                            x: { ticks: { color: '#9bb5ff', font: { size: 9 } } }
-                        }
+                        plugins: { legend: { labels: { color: '#bbddff', font: { size: 9 } } } },
+                        scales: { y: { grid: { color: '#1e3a5f' }, ticks: { color: '#bbddff' } }, x: { ticks: { color: '#bbddff', font: { size: 8 } } } }
                     }
                 });
             }
         }
     }
 
-    function renderStatic(containerId, projects) {
+    function renderStaticGrid(containerId, projects) {
         const container = document.getElementById(containerId);
-        if (!container) return;
+        if(!container) return;
         container.innerHTML = projects.map(proj => `
-            <div class="project-card-lux">
-                <div style="font-size:1.5rem; font-weight:600;">${proj.name}</div>
-                <div style="color:#8aabff; margin:0.3rem 0;">${proj.role}</div>
+            <div class="project-card">
+                <div style="font-size:1.5rem; font-weight:700;">${proj.name}</div>
+                <div style="color:#7ab3ff; margin:0.3rem 0;">${proj.role}</div>
                 <div class="btn-group" style="margin-top:1rem;">
                     <a href="${proj.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
                     ${proj.robloxUrl ? `<a href="${proj.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>` : ''}
@@ -364,30 +621,20 @@
         `).join('');
     }
 
-    renderStatic('dev-grid', devProjects);
-    renderStatic('past-grid', pastProjects);
+    renderStaticGrid('devGrid', devProjects);
+    renderStaticGrid('pastGrid', pastProjects);
+    renderReleaseGrid();
 
-    // Initial load for release page
-    renderReleaseWithRealStats();
-
-    // Auto-refresh every 60 seconds
-    if (refreshInterval) clearInterval(refreshInterval);
-    refreshInterval = setInterval(() => {
-        const activePage = document.querySelector('.page.active-page');
-        if (activePage && activePage.id === 'released-page') {
-            renderReleaseWithRealStats();
-        }
+    // auto refresh every 60 sec
+    let interval = setInterval(() => {
+        const active = document.querySelector('.page.active-page');
+        if(active && active.id === 'released-page') renderReleaseGrid();
     }, 60000);
 
-    // Manual refresh
-    const refreshBtn = document.getElementById('manualRefreshBtn');
-    if (refreshBtn) {
-        refreshBtn.addEventListener('click', () => {
-            renderReleaseWithRealStats();
-        });
-    }
+    const manual = document.getElementById('manualRefresh');
+    if(manual) manual.addEventListener('click', () => renderReleaseGrid());
 
-    // Page switching with cleanup
+    // PAGE SWITCHING
     const pages = {
         home: document.getElementById('home-page'),
         released: document.getElementById('released-page'),
@@ -395,26 +642,20 @@
         past: document.getElementById('past-page'),
         contact: document.getElementById('contact-page')
     };
-
     function switchPage(pageId) {
-        Object.values(pages).forEach(p => {
-            p.classList.remove('active-page');
-        });
+        Object.values(pages).forEach(p => p.classList.remove('active-page'));
         pages[pageId].classList.add('active-page');
         document.querySelectorAll('.luxury-nav a').forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('data-page') === pageId) link.classList.add('active');
+            if(link.getAttribute('data-page') === pageId) link.classList.add('active');
         });
-        if (pageId === 'released') {
-            renderReleaseWithRealStats();
-        }
+        if(pageId === 'released') renderReleaseGrid();
     }
-
     document.querySelectorAll('.luxury-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const page = link.getAttribute('data-page');
-            if (page) switchPage(page);
+            if(page) switchPage(page);
         });
     });
 </script>
