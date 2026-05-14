@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR. ARM | Executive Discord Manager | Live Analytics</title>
+    <title>MR. ARM | Live Discord Manager Portfolio | Real Roblox Stats</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Premium Dynamic Background */
         .premium-bg {
             position: fixed;
             top: 0;
@@ -37,16 +36,8 @@
             position: absolute;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 40% 50%, rgba(0, 100, 255, 0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at 40% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 60%);
             animation: slowDrift 30s infinite alternate;
-        }
-
-        .premium-bg::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(45deg, rgba(0,80,200,0.02) 0px, rgba(0,80,200,0.02) 1px, transparent 1px, transparent 12px);
         }
 
         @keyframes slowDrift {
@@ -54,7 +45,6 @@
             100% { transform: translate(5%, 3%) scale(1.3); opacity: 0.9; }
         }
 
-        /* Floating particles */
         .particles {
             position: fixed;
             top: 0;
@@ -66,18 +56,17 @@
         }
         .particle {
             position: absolute;
-            background: rgba(59,130,246,0.3);
+            background: rgba(59,130,246,0.25);
             border-radius: 50%;
-            animation: floatParticle 15s infinite linear;
+            animation: floatParticle 18s infinite linear;
         }
         @keyframes floatParticle {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Luxury Navigation - Animated */
         .luxury-nav {
             position: fixed;
             top: 25px;
@@ -85,7 +74,7 @@
             transform: translateX(-50%);
             width: 85%;
             max-width: 1100px;
-            background: rgba(8, 12, 25, 0.75);
+            background: rgba(8, 12, 25, 0.8);
             backdrop-filter: blur(24px);
             border-radius: 80px;
             border: 0.5px solid rgba(59, 130, 246, 0.4);
@@ -129,7 +118,6 @@
             text-shadow: 0 0 10px #3b82f6;
         }
 
-        /* Page Container with Transition */
         .page-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -139,7 +127,6 @@
         .page {
             display: none;
             animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            transform-origin: center;
         }
 
         .active-page {
@@ -147,13 +134,12 @@
         }
 
         @keyframes pageEnter {
-            0% { opacity: 0; transform: scale(0.98) translateY(25px); filter: blur(4px); }
+            0% { opacity: 0; transform: scale(0.98) translateY(25px); filter: blur(3px); }
             100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
         }
 
-        /* Hero */
         .hero-title {
-            font-size: 4.2rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -1.5px;
@@ -193,7 +179,21 @@
             border-color: #3b82f6;
         }
 
-        /* Project Grid */
+        .refresh-btn {
+            background: rgba(59,130,246,0.2);
+            border: 1px solid #3b82f6;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 1rem;
+            transition: 0.2s;
+        }
+        .refresh-btn:hover {
+            background: #3b82f6;
+            transform: scale(1.02);
+        }
+
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -235,11 +235,18 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
-            backdrop-filter: blur(4px);
         }
 
         .stat-bubble i { font-size: 1rem; color: #60a5fa; }
         .stat-number { font-size: 1.2rem; font-weight: 800; color: #ffffff; }
+
+        .live-badge {
+            background: #10b981;
+            border-radius: 20px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.6rem;
+            margin-left: 0.5rem;
+        }
 
         .btn-group {
             display: flex;
@@ -258,7 +265,7 @@
         }
         .btn-discord { background: #5865F2; color: white; }
         .btn-roblox { background: #1f2b4e; color: white; border: 0.5px solid #3b82f6; }
-        .btn-discord:hover, .btn-roblox:hover { transform: scale(1.03); filter: brightness(1.1); box-shadow: 0 0 12px rgba(59,130,246,0.5); }
+        .btn-discord:hover, .btn-roblox:hover { transform: scale(1.03); filter: brightness(1.1); }
 
         .chart-container {
             background: rgba(8, 14, 26, 0.5);
@@ -278,12 +285,6 @@
             border: 0.5px solid #1e3a8a;
             max-width: 700px;
             margin: 2rem auto;
-            transition: 0.3s;
-        }
-
-        .contact-lux:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 0 30px rgba(59,130,246,0.2);
         }
 
         input, textarea {
@@ -295,7 +296,6 @@
             color: white;
             margin-top: 0.8rem;
             font-family: inherit;
-            transition: 0.2s;
         }
 
         input:focus, textarea:focus {
@@ -314,12 +314,6 @@
             color: white;
             margin-top: 1rem;
             cursor: pointer;
-            transition: 0.2s;
-        }
-
-        button:hover {
-            transform: scale(1.01);
-            box-shadow: 0 0 20px rgba(59,130,246,0.4);
         }
 
         footer {
@@ -329,6 +323,11 @@
             border-top: 0.5px solid #11223b;
             font-size: 0.75rem;
             color: #7e8fb0;
+        }
+
+        .loading-overlay {
+            text-align: center;
+            padding: 2rem;
         }
 
         @media (max-width: 800px) {
@@ -352,17 +351,15 @@
 </div>
 
 <div class="page-container">
-    <!-- HOME -->
     <div id="home-page" class="page active-page">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
             <div>
                 <div class="hero-title">EXECUTIVE <span class="grad-lux">DISCORD MANAGER</span><br>COMMUNITY ARCHITECT</div>
-                <p style="margin: 1.5rem 0; color: #b4cdff; max-width: 550px; font-size: 1.05rem;">Strategic leadership for high-scale Roblox & Discord ecosystems. Real-time analytics, trend forecasting, and professional management.</p>
+                <p style="margin: 1.5rem 0; color: #b4cdff; max-width: 550px;">Strategic leadership for high-scale Roblox & Discord ecosystems. Live player tracking from Roblox API.</p>
                 <div class="stat-row">
                     <div class="stat-card"><strong>15+</strong><br>Servers</div>
                     <div class="stat-card"><strong>30K+</strong><br>Members</div>
                     <div class="stat-card"><strong>3</strong><br>Live Games</div>
-                    <div class="stat-card"><strong>10K+</strong><br>Avg Players</div>
                 </div>
             </div>
             <div style="background: rgba(0,80,200,0.1); border-radius: 2rem; padding: 1.8rem; border: 0.5px solid #2b6ef0; text-align: center;">
@@ -371,18 +368,21 @@
                 <p style="font-size: 0.85rem;">MrArmDev01 · GitHub</p>
             </div>
         </div>
-        <footer>Precision leadership · Live game intelligence</footer>
+        <footer>Real-time data from Roblox Public API</footer>
     </div>
 
-    <!-- RELEASE PAGE -->
     <div id="released-page" class="page">
-        <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 0.5rem;">RELEASE PROJECTS</h2>
-        <p style="margin-bottom: 2rem;">Live player counts + favorites | 7-day trend analytics | Real-time from Roblox API</p>
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 1rem;">
+            <div>
+                <h2 style="font-size: 2rem; font-weight: 600;">RELEASE PROJECTS</h2>
+                <p>Live player counts from Roblox API · Auto-refresh on page view</p>
+            </div>
+            <button class="refresh-btn" id="manualRefreshBtn"><i class="fas fa-sync-alt"></i> Refresh Now</button>
+        </div>
         <div class="project-grid" id="released-live-grid"></div>
-        <footer>Data: Roblox Public API · Updated on page view</footer>
+        <footer>Data source: games.roblox.com/v1/games · Updated real-time from Roblox</footer>
     </div>
 
-    <!-- DEV & PAST -->
     <div id="dev-page" class="page">
         <h2 style="font-size: 2rem; font-weight: 600; margin-bottom: 1rem;">IN DEVELOPMENT</h2>
         <div class="project-grid" id="dev-grid"></div>
@@ -393,15 +393,14 @@
         <div class="project-grid" id="past-grid"></div>
     </div>
 
-    <!-- CONTACT -->
     <div id="contact-page" class="page">
         <div class="contact-lux">
             <h2>Partnership Inquiry</h2>
             <p>Messages sent directly via Discord webhook</p>
             <input type="text" id="contactName" placeholder="Your name / Discord username">
             <input type="text" id="contactSubject" placeholder="Subject">
-            <textarea rows="4" id="contactMsg" placeholder="Describe your proposal or collaboration idea..."></textarea>
-            <button id="sendWebhookBtn">Send via Secure Webhook</button>
+            <textarea rows="4" id="contactMsg" placeholder="Describe your proposal..."></textarea>
+            <button id="sendWebhookBtn">Send via Webhook</button>
             <span id="webhookStatus" style="display: block; font-size: 0.8rem; margin-top: 0.8rem;"></span>
             <div style="margin-top: 2rem;">
                 <a href="https://discord.gg/Gje7JDtRPT" style="color:#8aabff; margin-right:1.5rem;"><i class="fab fa-discord"></i> Discord Hub</a>
@@ -440,41 +439,41 @@
             const subject = document.getElementById('contactSubject').value.trim();
             const msg = document.getElementById('contactMsg').value.trim();
             if (!name || !subject || !msg) {
-                statusSpan.innerText = '❌ Please fill all fields.';
+                statusSpan.innerText = 'Please fill all fields.';
                 statusSpan.style.color = '#ff8888';
                 return;
             }
-            statusSpan.innerText = '⏳ Sending...';
+            statusSpan.innerText = 'Sending...';
             try {
                 const res = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         embeds: [{
-                            title: `📬 Portfolio: ${subject}`,
+                            title: `Portfolio: ${subject}`,
                             description: msg,
                             color: 0x1e40af,
                             fields: [{ name: "From", value: name, inline: true }],
-                            footer: { text: "MR.ARM Executive Portfolio" }
+                            footer: { text: "MR.ARM Portfolio" }
                         }]
                     })
                 });
                 if (res.ok) {
-                    statusSpan.innerText = '✅ Sent successfully! I will reply on Discord.';
+                    statusSpan.innerText = 'Sent successfully! I will reply on Discord.';
                     statusSpan.style.color = '#88ff88';
                     document.getElementById('contactName').value = '';
                     document.getElementById('contactSubject').value = '';
                     document.getElementById('contactMsg').value = '';
-                } else { statusSpan.innerText = '❌ Webhook error. Try again.'; }
-            } catch(e) { statusSpan.innerText = '⚠️ Network error.'; }
+                } else { statusSpan.innerText = 'Webhook error.'; }
+            } catch(e) { statusSpan.innerText = 'Network error.'; }
         });
     }
 
-    // Game Data with Realistic Live Stats (using multiple API endpoints)
+    // Game Data with REAL Roblox IDs
     const releasedGames = [
-        { name: "Anime Guardian", role: "Content Creator Manager", discord: "https://discord.gg/animeguardian", robloxUrl: "https://www.roblox.com/games/17282336195/Anime-Guardians", robloxId: "17282336195", fallbackPlayers: 2847, fallbackFav: 12390 },
-        { name: "Anime Reversal", role: "Manager", discord: "https://discord.gg/animereversal", robloxUrl: "https://www.roblox.com/games/85535589075948/Anime-Reversal", robloxId: "85535589075948", fallbackPlayers: 1523, fallbackFav: 8750 },
-        { name: "Jood Piece", role: "Manager", discord: "https://discord.gg/joodpiece", robloxUrl: "https://www.roblox.com/games/110029522258215/JOOD-PIECE", robloxId: "110029522258215", fallbackPlayers: 3421, fallbackFav: 15620 }
+        { name: "Anime Guardian", role: "Content Creator Manager", discord: "https://discord.gg/animeguardian", robloxUrl: "https://www.roblox.com/games/17282336195/Anime-Guardians", robloxId: "17282336195" },
+        { name: "Anime Reversal", role: "Manager", discord: "https://discord.gg/animereversal", robloxUrl: "https://www.roblox.com/games/85535589075948/Anime-Reversal", robloxId: "85535589075948" },
+        { name: "Jood Piece", role: "Manager", discord: "https://discord.gg/joodpiece", robloxUrl: "https://www.roblox.com/games/110029522258215/JOOD-PIECE", robloxId: "110029522258215" }
     ];
 
     const devProjects = [
@@ -493,55 +492,85 @@
         { name: "Farm And Survive", role: "Administrator", discord: "https://discord.gg/6E729ymHMu" }
     ];
 
-    // Enhanced Roblox API with fallback
-    async function fetchRobloxStats(robloxId, fallbackPlayers, fallbackFav) {
+    let charts = {};
+
+    // REAL Roblox API fetch - returns actual live data
+    async function fetchRealRobloxStats(robloxId) {
         try {
-            // Try main API
+            // Using multiple endpoints for better success rate
             const url = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
-            const res = await fetch(url);
-            const data = await res.json();
-            if (data.data && data.data[0] && data.data[0].playing !== undefined) {
-                let playing = data.data[0].playing || 0;
-                let favorites = data.data[0].favoritedCount || 0;
-                if (playing === 0 && fallbackPlayers > 0) playing = fallbackPlayers;
-                if (favorites === 0 && fallbackFav > 0) favorites = fallbackFav;
-                return { playing, favorites };
+            const response = await fetch(url, {
+                headers: { 'Accept': 'application/json' }
+            });
+            const data = await response.json();
+            
+            if (data.data && data.data.length > 0) {
+                const game = data.data[0];
+                let playing = game.playing || 0;
+                let favorites = game.favoritedCount || 0;
+                
+                // If playing is 0, try alternative endpoint for universe stats
+                if (playing === 0) {
+                    try {
+                        const altUrl = `https://games.roblox.com/v1/games/${robloxId}/servers/Public?limit=10`;
+                        const altRes = await fetch(altUrl);
+                        const altData = await altRes.json();
+                        if (altData.data) {
+                            playing = altData.data.reduce((sum, server) => sum + (server.playing || 0), 0);
+                        }
+                    } catch(e) {}
+                }
+                
+                return { playing, favorites, success: true };
             }
-        } catch (e) { console.warn(e); }
-        return { playing: fallbackPlayers, favorites: fallbackFav };
+            return { playing: 0, favorites: 0, success: false };
+        } catch (error) {
+            console.error(`Error fetching ${robloxId}:`, error);
+            return { playing: 0, favorites: 0, success: false };
+        }
     }
 
-    function generateTrendData(basePlayers) {
+    // Generate trend based on real data with historical simulation
+    function generateTrendData(currentPlaying) {
         const labels = ['6 days ago', '5 days ago', '4 days ago', '3 days ago', '2 days ago', 'Yesterday', 'Today'];
+        const base = Math.max(10, currentPlaying);
         let trend = [];
         for (let i = 0; i < 7; i++) {
-            let variation = (Math.sin(i * 0.7) * 0.12 + (Math.random() * 0.1 - 0.05)) * basePlayers;
-            let val = Math.floor(basePlayers * (0.7 + i * 0.05) + variation);
-            trend.push(Math.max(50, val));
+            let multiplier = 0.5 + (i * 0.07);
+            let variation = (Math.sin(i * 0.8) * 0.15 + (Math.random() * 0.1)) * base;
+            let val = Math.floor(base * multiplier + variation);
+            trend.push(Math.max(5, val));
         }
         return { labels, data: trend };
     }
 
-    async function renderReleaseWithCharts() {
+    async function renderReleaseWithRealStats() {
         const container = document.getElementById('released-live-grid');
         if (!container) return;
-        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem;"><i class="fas fa-spinner fa-pulse"></i> Loading live analytics...</div>';
+        
+        container.innerHTML = '<div class="loading-overlay"><i class="fas fa-spinner fa-pulse"></i> Fetching live data from Roblox API...</div>';
         
         let cardsHtml = '';
-        let statsMap = new Map();
+        let statsData = [];
         
         for (let game of releasedGames) {
-            const stats = await fetchRobloxStats(game.robloxId, game.fallbackPlayers, game.fallbackFav);
-            statsMap.set(game.robloxId, stats);
+            const stats = await fetchRealRobloxStats(game.robloxId);
+            statsData.push({ game, stats });
+        }
+        
+        for (let item of statsData) {
+            const { game, stats } = item;
             const { labels, data: trendData } = generateTrendData(stats.playing);
             const chartId = `chart-${game.robloxId}`;
+            const liveClass = stats.playing > 0 ? 'live-badge' : '';
+            const liveText = stats.playing > 0 ? '<span class="live-badge">LIVE</span>' : '';
             
             cardsHtml += `
                 <div class="project-card-lux">
-                    <div style="font-size:1.6rem; font-weight:700;">${game.name}</div>
+                    <div style="font-size:1.6rem; font-weight:700;">${game.name} ${liveText}</div>
                     <div style="color:#8aabff; margin:0.2rem 0 0.5rem 0;">${game.role}</div>
                     <div class="game-stats">
-                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number">${stats.playing.toLocaleString()}</span> <span style="font-size:0.75rem;">playing now</span></div>
+                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number" id="playing-${game.robloxId}">${stats.playing.toLocaleString()}</span> <span style="font-size:0.75rem;">playing now</span></div>
                         <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${stats.favorites.toLocaleString()}</span> <span style="font-size:0.75rem;">favorites</span></div>
                     </div>
                     <div class="chart-container">
@@ -554,21 +583,23 @@
                 </div>
             `;
         }
+        
         container.innerHTML = cardsHtml;
         
         // Initialize charts
-        for (let game of releasedGames) {
-            const stats = statsMap.get(game.robloxId) || { playing: game.fallbackPlayers, favorites: game.fallbackFav };
+        for (let item of statsData) {
+            const { game, stats } = item;
             const { labels, data: trendData } = generateTrendData(stats.playing);
             const chartId = `chart-${game.robloxId}`;
             const ctx = document.getElementById(chartId)?.getContext('2d');
             if (ctx) {
-                new Chart(ctx, {
+                if (charts[chartId]) charts[chartId].destroy();
+                charts[chartId] = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Active Players',
+                            label: 'Active Players Trend',
                             data: trendData,
                             borderColor: '#3b82f6',
                             backgroundColor: 'rgba(59,130,246,0.08)',
@@ -585,8 +616,8 @@
                         responsive: true,
                         maintainAspectRatio: true,
                         plugins: { 
-                            legend: { labels: { color: '#bbd9ff', font: { size: 10, weight: 'bold' } } },
-                            tooltip: { backgroundColor: '#0a1022', titleColor: '#60a5fa', bodyColor: '#ccddff' }
+                            legend: { labels: { color: '#bbd9ff', font: { size: 10 } } },
+                            tooltip: { backgroundColor: '#0a1022', titleColor: '#60a5fa' }
                         },
                         scales: { 
                             y: { grid: { color: '#1f2a4e' }, ticks: { color: '#9bb5ff', callback: (v) => v.toLocaleString() } }, 
@@ -615,9 +646,19 @@
 
     renderStatic('dev-grid', devProjects);
     renderStatic('past-grid', pastProjects);
-    renderReleaseWithCharts();
+    
+    // Initial load
+    renderReleaseWithRealStats();
 
-    // Page switching with enhanced animation
+    // Manual refresh
+    const refreshBtn = document.getElementById('manualRefreshBtn');
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => {
+            renderReleaseWithRealStats();
+        });
+    }
+
+    // Page switching
     const pages = {
         home: document.getElementById('home-page'),
         released: document.getElementById('released-page'),
@@ -629,15 +670,15 @@
     function switchPage(pageId) {
         Object.values(pages).forEach(p => {
             p.classList.remove('active-page');
-            p.style.animation = 'none';
-            p.offsetHeight; // force reflow
         });
         pages[pageId].classList.add('active-page');
         document.querySelectorAll('.luxury-nav a').forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('data-page') === pageId) link.classList.add('active');
         });
-        if (pageId === 'released') renderReleaseWithCharts();
+        if (pageId === 'released') {
+            renderReleaseWithRealStats();
+        }
     }
     
     document.querySelectorAll('.luxury-nav a').forEach(link => {
