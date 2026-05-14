@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>MR. ARM | Discord Manager Portfolio | Azure Noir</title>
+    <title>MR. ARM · Discord Manager | Nova UI</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -16,38 +15,38 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #00050f;
-            color: #eef5ff;
+            background: #030711;
+            color: #f0f6ff;
             overflow-x: hidden;
         }
 
-        /* === PREMIUM BACKGROUND AZURE/BLACK === */
-        .premium-bg {
+        /* premium animated background */
+        .bg-aura {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 20% 30%, #001838 0%, #000000 100%);
+            background: radial-gradient(circle at 10% 20%, #001a33 0%, #000000 100%);
             z-index: -2;
         }
 
-        .premium-bg::before {
+        .bg-aura::before {
             content: '';
             position: absolute;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 40% 50%, rgba(0, 160, 255, 0.12) 0%, transparent 60%);
-            animation: driftAzure 28s infinite alternate;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 180, 255, 0.1) 0%, transparent 70%);
+            animation: pulseShift 22s infinite alternate;
         }
 
-        @keyframes driftAzure {
+        @keyframes pulseShift {
             0% { transform: translate(-5%, -3%) scale(1); opacity: 0.5; }
-            100% { transform: translate(5%, 3%) scale(1.2); opacity: 0.9; }
+            100% { transform: translate(5%, 4%) scale(1.2); opacity: 0.9; }
         }
 
-        /* floating particles cyan */
-        .particles {
+        /* floating dots */
+        .float-dust {
             position: fixed;
             top: 0;
             left: 0;
@@ -56,227 +55,216 @@
             z-index: -1;
             pointer-events: none;
         }
-        .particle {
+        .dust {
             position: absolute;
-            background: rgba(0, 180, 255, 0.3);
+            background: rgba(0, 180, 255, 0.2);
             border-radius: 50%;
-            animation: floatParticle 20s infinite linear;
+            animation: floatUp 25s infinite linear;
         }
-        @keyframes floatParticle {
+        @keyframes floatUp {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* === LUXURY NAVIGATION === */
-        .luxury-nav {
+        /* new navigation - pill style with glass */
+        .nova-nav {
             position: fixed;
-            top: 25px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
-            width: 88%;
-            max-width: 1150px;
-            background: rgba(2, 10, 22, 0.75);
+            width: auto;
+            max-width: 90%;
+            background: rgba(5, 15, 30, 0.8);
             backdrop-filter: blur(20px);
-            border-radius: 70px;
-            border: 0.5px solid rgba(0, 160, 255, 0.5);
-            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            border: 0.5px solid rgba(0, 150, 255, 0.5);
+            padding: 0.6rem 1.2rem;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            gap: 0.8rem;
             z-index: 1000;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .luxury-nav a {
-            color: #cce5ff;
+        .nova-nav a {
+            color: #bbddff;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 40px;
+            transition: 0.25s;
             letter-spacing: 0.3px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            padding: 0.4rem 0;
-            position: relative;
+            white-space: nowrap;
         }
 
-        .luxury-nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00a0ff, #3b82f6);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
+        .nova-nav a i {
+            margin-right: 6px;
+            font-size: 0.9rem;
         }
 
-        .luxury-nav a:hover::before, .luxury-nav a.active::before {
-            width: 70%;
+        .nova-nav a:hover, .nova-nav a.active {
+            background: #00a0ff;
+            color: #030711;
+            box-shadow: 0 0 12px #00a0ff;
         }
 
-        .luxury-nav a:hover, .luxury-nav a.active {
-            color: white;
-            text-shadow: 0 0 8px #00a0ff;
-        }
-
-        /* page container */
-        .page-container {
-            max-width: 1400px;
+        /* main container */
+        .app-main {
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 7rem 2rem 4rem;
+            padding: 4rem 2rem 6rem;
         }
 
         .page {
             display: none;
-            animation: pageEnter 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         .active-page {
             display: block;
         }
 
-        @keyframes pageEnter {
-            0% { opacity: 0; transform: scale(0.97) translateY(20px); filter: blur(3px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(20px); filter: blur(2px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
-        /* hero */
+        /* hero section */
+        .hero-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
         .hero-title {
-            font-size: 4rem;
+            font-size: 3.6rem;
             font-weight: 800;
             line-height: 1.2;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
         }
 
-        .grad-azure {
-            background: linear-gradient(135deg, #ffffff, #00a6ff, #0055aa);
+        .grad-text {
+            background: linear-gradient(125deg, #ffffff, #3b82f6, #00a0ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: shimmer 3s infinite;
         }
 
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .stat-row {
+        .hero-stats {
             display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 1rem;
             flex-wrap: wrap;
+            margin: 1.5rem 0;
         }
-
-        .stat-card {
-            background: rgba(0, 30, 60, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 1rem 2rem;
-            border: 0.5px solid rgba(0, 160, 255, 0.4);
-            transition: 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            border-color: #00a0ff;
-            box-shadow: 0 5px 15px rgba(0,160,255,0.2);
-        }
-
-        /* refresh button */
-        .refresh-btn {
-            background: rgba(0, 160, 255, 0.2);
-            border: 1px solid #00a0ff;
+        .hero-stats span {
+            background: rgba(0, 70, 120, 0.5);
+            backdrop-filter: blur(8px);
             padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: 0.2s;
-            color: #cce5ff;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border: 0.5px solid rgba(0,160,255,0.4);
         }
-        .refresh-btn:hover {
-            background: #00a0ff;
-            color: #000;
-            transform: scale(1.02);
+
+        .discord-card {
+            background: rgba(0, 50, 90, 0.4);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            border: 0.5px solid #00a0ff;
+            text-align: center;
+            min-width: 200px;
         }
 
         /* project grid */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0;
         }
 
         .project-card {
-            background: rgba(5, 15, 30, 0.65);
-            backdrop-filter: blur(14px);
+            background: rgba(8, 20, 35, 0.6);
+            backdrop-filter: blur(16px);
             border-radius: 2rem;
-            padding: 1.6rem;
-            border: 0.5px solid rgba(0, 160, 255, 0.25);
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            overflow: hidden;
+            border: 0.5px solid rgba(0, 150, 255, 0.3);
+            transition: 0.3s;
         }
 
         .project-card:hover {
+            transform: translateY(-5px);
             border-color: #00a0ff;
-            transform: translateY(-6px);
-            box-shadow: 0 20px 30px -12px rgba(0, 160, 255, 0.3);
-            background: rgba(8, 25, 45, 0.8);
+            box-shadow: 0 20px 28px -12px rgba(0, 160, 255, 0.3);
         }
 
-        .game-stats {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            padding: 0.8rem 0;
-            border-top: 1px solid rgba(0,160,255,0.3);
-            border-bottom: 1px solid rgba(0,160,255,0.3);
-            flex-wrap: wrap;
+        .game-thumb {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            background: #0a1a2f;
+            display: block;
         }
 
-        .stat-bubble {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(0, 30, 60, 0.7);
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
+        .card-body {
+            padding: 1.2rem 1.5rem 1.5rem;
         }
-        .stat-bubble i { color: #00a0ff; width: 1.2rem; }
-        .stat-number { font-weight: 800; font-size: 1.2rem; color: white; }
+
+        .project-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .project-role {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #7ab3ff;
+            margin: 0.3rem 0 0.8rem;
+            letter-spacing: 0.5px;
+        }
 
         .btn-group {
             display: flex;
-            gap: 1rem;
-            margin-top: 1.2rem;
+            gap: 0.8rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
         }
+
         .btn-discord, .btn-roblox {
-            padding: 0.5rem 1.2rem;
+            padding: 0.45rem 1rem;
             border-radius: 2rem;
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             transition: 0.2s;
         }
-        .btn-discord { background: #5865F2; color: white; }
-        .btn-roblox { background: #0a2a44; border: 0.5px solid #00a0ff; color: white; }
-        .btn-discord:hover, .btn-roblox:hover { transform: scale(1.02); filter: brightness(1.1); }
 
-        .chart-container {
-            background: rgba(0, 15, 30, 0.5);
-            border-radius: 1.2rem;
-            padding: 0.8rem;
-            margin: 1rem 0;
+        .btn-discord {
+            background: #5865F2;
+            color: white;
         }
 
-        /* contact premium */
-        .contact-lux {
-            background: rgba(2, 12, 25, 0.7);
+        .btn-roblox {
+            background: #0f2b44;
+            border: 0.5px solid #00a0ff;
+            color: white;
+        }
+
+        .btn-discord:hover, .btn-roblox:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        /* contact form */
+        .form-glass {
+            background: rgba(2, 15, 30, 0.7);
             backdrop-filter: blur(20px);
             border-radius: 2rem;
             padding: 2rem;
@@ -287,23 +275,25 @@
 
         input, textarea {
             width: 100%;
-            background: #061a2f;
+            background: #071a2c;
             border: 1px solid #1e4a76;
-            padding: 0.9rem;
+            padding: 0.8rem 1rem;
             border-radius: 1.2rem;
             color: white;
             margin-top: 0.8rem;
             font-family: inherit;
         }
+
         input:focus, textarea:focus {
             outline: none;
             border-color: #00a0ff;
-            box-shadow: 0 0 12px rgba(0,160,255,0.3);
+            box-shadow: 0 0 10px rgba(0,160,255,0.3);
         }
+
         button {
             background: linear-gradient(95deg, #0055aa, #00a0ff);
             width: 100%;
-            padding: 0.9rem;
+            padding: 0.8rem;
             border-radius: 2rem;
             font-weight: bold;
             border: none;
@@ -311,171 +301,165 @@
             margin-top: 1rem;
             cursor: pointer;
         }
+
         footer {
             text-align: center;
             padding: 2rem;
-            margin-top: 3rem;
-            border-top: 0.5px solid #114477;
-            font-size: 0.75rem;
+            margin-top: 2rem;
+            border-top: 0.5px solid #115577;
+            font-size: 0.7rem;
             color: #88aadd;
         }
-        .live-badge {
-            background: #00cc88;
-            border-radius: 20px;
-            padding: 0.2rem 0.7rem;
-            font-size: 0.65rem;
-            margin-left: 0.6rem;
-            vertical-align: middle;
-        }
-        @media (max-width: 800px) {
-            .luxury-nav { gap: 1rem; width: 95%; padding: 0.5rem 0.8rem; overflow-x: auto; }
+
+        @media (max-width: 700px) {
+            .app-main { padding: 2rem 1rem 5rem; }
+            .nova-nav { bottom: 15px; gap: 0.3rem; padding: 0.4rem 0.8rem; }
+            .nova-nav a { padding: 0.4rem 0.8rem; font-size: 0.7rem; }
             .hero-title { font-size: 2.2rem; }
-            .page-container { padding-top: 6rem; }
-            .project-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-<div class="premium-bg"></div>
-<div class="particles" id="particles"></div>
+<div class="bg-aura"></div>
+<div class="float-dust" id="dustContainer"></div>
 
-<div class="luxury-nav">
-    <a href="#" data-page="home" class="active">HOME</a>
-    <a href="#" data-page="released">RELEASE PROJECT</a>
-    <a href="#" data-page="dev">IN DEVELOPMENT</a>
-    <a href="#" data-page="past">PAST PROJECT</a>
-    <a href="#" data-page="contact">CONTACT</a>
+<!-- new navigation: bottom pill style -->
+<div class="nova-nav">
+    <a href="#" data-page="home" class="active"><i class="fas fa-home"></i> HOME</a>
+    <a href="#" data-page="released"><i class="fas fa-rocket"></i> RELEASE</a>
+    <a href="#" data-page="dev"><i class="fas fa-code-branch"></i> DEV</a>
+    <a href="#" data-page="past"><i class="fas fa-history"></i> PAST</a>
+    <a href="#" data-page="contact"><i class="fas fa-envelope"></i> CONTACT</a>
 </div>
 
-<div class="page-container">
-    <!-- HOME -->
+<div class="app-main">
+    <!-- HOME PAGE -->
     <div id="home-page" class="page active-page">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2rem;">
+        <div class="hero-flex">
             <div>
-                <div class="hero-title">DISCORD <span class="grad-azure">MANAGER</span><br>COMMUNITY ARCHITECT</div>
-                <p style="margin: 1.5rem 0; color: #bbddff; max-width: 550px;">Orchestrating high-scale Roblox & Discord communities. Real-time player analytics, exclusive management.</p>
-                <div class="stat-row">
-                    <div class="stat-card"><strong>15+</strong><br>Servers</div>
-                    <div class="stat-card"><strong>35K+</strong><br>Members</div>
-                    <div class="stat-card"><strong>4</strong><br>Release Games</div>
+                <div class="hero-title">DISCORD <span class="grad-text">MANAGER</span><br>COMMUNITY ARCHITECT</div>
+                <p style="margin: 1rem 0; color: #bbddff; max-width: 500px;">Leading high-scale Roblox & Discord ecosystems with precision and next‑gen vision.</p>
+                <div class="hero-stats">
+                    <span><i class="fab fa-discord"></i> 15+ Servers</span>
+                    <span><i class="fas fa-users"></i> 35K+ Members</span>
+                    <span><i class="fas fa-gamepad"></i> 4 Live Games</span>
                 </div>
             </div>
-            <div style="background: rgba(0, 80, 160, 0.2); border-radius: 2rem; padding: 1.8rem; border: 1px solid #00a0ff; text-align: center;">
-                <i class="fab fa-discord" style="font-size: 3rem; color: #5a9eff;"></i>
-                <p style="margin-top: 0.8rem; font-weight: 600;">real_mr.arm</p>
-                <p style="font-size: 0.85rem;">Manager since 2022</p>
+            <div class="discord-card">
+                <i class="fab fa-discord" style="font-size: 2.5rem; color: #5a9eff;"></i>
+                <p style="margin-top: 0.6rem; font-weight: 600;">real_mr.arm</p>
+                <p style="font-size: 0.8rem;">Professional Manager</p>
             </div>
         </div>
-        <footer>Azure Noir · Executive Portfolio</footer>
+        <footer>Azure Nova · Executive Portfolio</footer>
     </div>
 
-    <!-- RELEASE PROJECTS -->
+    <!-- RELEASE PROJECTS (with thumbnails) -->
     <div id="released-page" class="page">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem;">
-            <div>
-                <h2 style="font-size: 2rem; font-weight: 700;">RELEASE PROJECTS</h2>
-                <p>Live player counts via Roblox API · Auto-refresh every 60s</p>
-            </div>
-            <button class="refresh-btn" id="manualRefresh"><i class="fas fa-sync-alt"></i> Refresh stats</button>
-        </div>
+        <h2 style="font-size: 2rem; font-weight: 700;">RELEASE PROJECTS</h2>
+        <p style="margin-bottom: 1rem; opacity: 0.8;">Live games · fully managed by MR.ARM</p>
         <div class="project-grid" id="releaseGrid"></div>
-        <footer>Data source: Roproxy.io · actual active players</footer>
     </div>
 
     <!-- IN DEVELOPMENT -->
     <div id="dev-page" class="page">
-        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">IN DEVELOPMENT</h2>
+        <h2 style="font-size: 2rem; font-weight: 700;">IN DEVELOPMENT</h2>
         <div class="project-grid" id="devGrid"></div>
     </div>
 
     <!-- PAST PROJECTS -->
     <div id="past-page" class="page">
-        <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">PAST PROJECTS</h2>
+        <h2 style="font-size: 2rem; font-weight: 700;">PAST PROJECTS</h2>
         <div class="project-grid" id="pastGrid"></div>
     </div>
 
     <!-- CONTACT -->
     <div id="contact-page" class="page">
-        <div class="contact-lux">
+        <div class="form-glass">
             <h2><i class="fas fa-paper-plane"></i> Direct Inquiry</h2>
-            <p>Message will be sent to my Discord via secure webhook</p>
+            <p>Message will be delivered via Discord webhook</p>
             <input type="text" id="contactName" placeholder="Your name / Discord username">
             <input type="text" id="contactSubject" placeholder="Subject">
-            <textarea rows="4" id="contactMsg" placeholder="Partnership or request details..."></textarea>
+            <textarea rows="4" id="contactMsg" placeholder="Describe your proposal..."></textarea>
             <button id="sendWebhook"><i class="fab fa-discord"></i> Send via Webhook</button>
-            <span id="webhookStatus" style="display:block; font-size:0.8rem; margin-top:0.8rem;"></span>
-            <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <span id="webhookStatus" style="display: block; font-size: 0.8rem; margin-top: 0.6rem;"></span>
+            <div style="margin-top: 1.8rem; display: flex; gap: 1rem; flex-wrap: wrap;">
                 <a href="https://discord.gg/Gje7JDtRPT" target="_blank" style="color:#7ab3ff;"><i class="fab fa-discord"></i> Discord Hub</a>
                 <a href="https://github.com/MrArmDev01" target="_blank" style="color:#7ab3ff;"><i class="fab fa-github"></i> GitHub</a>
                 <a href="https://www.tiktok.com/@mr.armxso" target="_blank" style="color:#7ab3ff;"><i class="fab fa-tiktok"></i> TikTok</a>
             </div>
-            <p style="margin-top: 1.5rem;"><i class="fas fa-at"></i> Discord: real_mr.arm</p>
+            <p style="margin-top: 1rem;"><i class="fas fa-at"></i> Discord: real_mr.arm</p>
         </div>
+        <footer>Response within 24h</footer>
     </div>
 </div>
 
 <script>
-    // floating particles
-    function createParticles() {
-        const container = document.getElementById('particles');
-        if(!container) return;
-        for(let i=0;i<60;i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const s = Math.random() * 4 + 1;
-            p.style.width = s+'px';
-            p.style.height = s+'px';
-            p.style.left = Math.random()*100+'%';
-            p.style.animationDelay = Math.random()*20+'s';
-            p.style.animationDuration = Math.random()*15+10+'s';
-            p.style.opacity = Math.random()*0.5;
-            container.appendChild(p);
+    // floating particles (dust)
+    function createDust() {
+        const container = document.getElementById('dustContainer');
+        if (!container) return;
+        for (let i = 0; i < 70; i++) {
+            const d = document.createElement('div');
+            d.className = 'dust';
+            const size = Math.random() * 3 + 1;
+            d.style.width = size + 'px';
+            d.style.height = size + 'px';
+            d.style.left = Math.random() * 100 + '%';
+            d.style.animationDelay = Math.random() * 20 + 's';
+            d.style.animationDuration = Math.random() * 18 + 12 + 's';
+            d.style.opacity = Math.random() * 0.5;
+            container.appendChild(d);
         }
     }
-    createParticles();
+    createDust();
 
-    // ---------- WEBHOOK (unchanged) ----------
+    // ==================== WEBHOOK ====================
     const WEBHOOK_URL = "https://discord.com/api/webhooks/1503653994512257136/JLEjYP83LDss0hAzIPW8dcHbwuGXLPuuvRRN_mIKCTAtw377iarDeCWORmJFdtmEe2Y8";
     const sendBtn = document.getElementById('sendWebhook');
     const statusSpan = document.getElementById('webhookStatus');
-    if(sendBtn){
+    if (sendBtn) {
         sendBtn.addEventListener('click', async () => {
             const name = document.getElementById('contactName').value.trim();
             const subject = document.getElementById('contactSubject').value.trim();
             const msg = document.getElementById('contactMsg').value.trim();
-            if(!name || !subject || !msg) {
-                statusSpan.innerText = 'Please fill all fields';
+            if (!name || !subject || !msg) {
+                statusSpan.innerText = '❌ All fields required';
                 statusSpan.style.color = '#ff8888';
                 return;
             }
-            statusSpan.innerText = 'Sending...';
+            statusSpan.innerText = '⏳ Sending...';
             try {
                 const res = await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    headers: {'Content-Type':'application/json'},
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         embeds: [{
-                            title: `Portfolio: ${subject}`,
+                            title: `📬 Portfolio: ${subject}`,
                             description: msg,
                             color: 0x0088ff,
-                            fields: [{name: "From", value: name, inline: true}],
-                            footer: {text: "MR.ARM Azure Portfolio"}
+                            fields: [{ name: "From", value: name, inline: true }],
+                            footer: { text: "MR.ARM Nova Portfolio" }
                         }]
                     })
                 });
-                if(res.ok) {
-                    statusSpan.innerText = 'Sent! I will reply on Discord.';
+                if (res.ok) {
+                    statusSpan.innerText = '✅ Sent! I will reply on Discord.';
                     statusSpan.style.color = '#88ff88';
-                    document.getElementById('contactName').value='';
-                    document.getElementById('contactSubject').value='';
-                    document.getElementById('contactMsg').value='';
-                } else statusSpan.innerText = 'Webhook error';
-            } catch(e) { statusSpan.innerText = 'Network error'; }
+                    document.getElementById('contactName').value = '';
+                    document.getElementById('contactSubject').value = '';
+                    document.getElementById('contactMsg').value = '';
+                } else {
+                    statusSpan.innerText = '❌ Webhook error';
+                }
+            } catch (e) {
+                statusSpan.innerText = '⚠️ Network error';
+            }
         });
     }
 
-    // ---------- PROJECT DATA ----------
-    // Release projects: Anime Guardian, Anime Reversal, Jood Piece, Godverse Awakening
+    // ========== PROJECT DATA ==========
+    // Release projects (with Roblox ID for thumbnail)
     const releaseProjects = [
         { name: "Anime Guardian", role: "Content Creator Manager", discord: "https://discord.gg/animeguardian", robloxUrl: "https://www.roblox.com/games/17282336195/Anime-Guardians", robloxId: "17282336195" },
         { name: "Anime Reversal", role: "Manager", discord: "https://discord.gg/animereversal", robloxUrl: "https://www.roblox.com/games/85535589075948/Anime-Reversal", robloxId: "85535589075948" },
@@ -498,143 +482,78 @@
         { name: "Farm And Survive", role: "Administrator", discord: "https://discord.gg/6E729ymHMu" }
     ];
 
-    // Roblox API using Roproxy (better CORS & reliability)
-    async function fetchRobloxStats(robloxId) {
+    // Helper: fetch Roblox thumbnail URL
+    async function getRobloxThumbnail(robloxId) {
         try {
-            const url = `https://api.roprox.io/games/${robloxId}`;
-            const res = await fetch(url);
+            const res = await fetch(`https://thumbnails.roblox.com/v1/games?universeIds=${robloxId}&size=512x512&format=Png`);
             const data = await res.json();
-            if(data && typeof data.playing !== 'undefined') {
-                return { playing: data.playing || 0, favorites: data.favorites || 0 };
+            if (data.data && data.data[0] && data.data[0].imageUrl) {
+                return data.data[0].imageUrl;
             }
-        } catch(e) { console.warn(e); }
-        // fallback to official endpoint if proxy fails
-        try {
-            const altUrl = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
-            const altRes = await fetch(altUrl);
-            const altData = await altRes.json();
-            if(altData.data && altData.data[0]) {
-                return { playing: altData.data[0].playing || 0, favorites: altData.data[0].favoritedCount || 0 };
-            }
-        } catch(e) {}
-        return { playing: 0, favorites: 0 };
-    }
-
-    // generate trend chart data (simulated but based on current playing)
-    function generateTrend(basePlayers) {
-        const labels = ['6d','5d','4d','3d','2d','1d','Today'];
-        let trend = [];
-        for(let i=0;i<7;i++) {
-            let variation = (Math.sin(i*0.7)*0.15 + (Math.random()*0.1)) * basePlayers;
-            let val = Math.floor(basePlayers * (0.6 + i*0.06) + variation);
-            trend.push(Math.max(5, val));
+            return null;
+        } catch (e) {
+            console.warn("Thumb fetch error", e);
+            return null;
         }
-        return { labels, data: trend };
     }
 
-    let charts = {};
-
-    async function renderReleaseGrid() {
+    // Render release projects with dynamic thumbnails
+    async function renderRelease() {
         const container = document.getElementById('releaseGrid');
-        if(!container) return;
-        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem;"><i class="fas fa-spinner fa-pulse"></i> Loading live stats...</div>';
+        if (!container) return;
+        container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2rem;"><i class="fas fa-spinner fa-pulse"></i> Loading game covers...</div>';
         
         let cardsHtml = '';
-        let statsMap = new Map();
-        for(let game of releaseProjects) {
-            const stats = await fetchRobloxStats(game.robloxId);
-            statsMap.set(game.robloxId, stats);
-        }
-        for(let game of releaseProjects) {
-            const stats = statsMap.get(game.robloxId) || {playing:0, favorites:0};
-            const { labels, data } = generateTrend(stats.playing);
-            const chartId = `chart-${game.robloxId}`;
-            const liveMark = stats.playing > 0 ? '<span class="live-badge"><i class="fas fa-circle" style="font-size:0.45rem;"></i> LIVE</span>' : '';
+        for (let game of releaseProjects) {
+            let thumbUrl = await getRobloxThumbnail(game.robloxId);
+            if (!thumbUrl) thumbUrl = `https://placehold.co/600x400/0a1a2f/00a0ff?text=${encodeURIComponent(game.name)}`;
             cardsHtml += `
                 <div class="project-card">
-                    <div style="font-size:1.5rem; font-weight:700;">${game.name} ${liveMark}</div>
-                    <div style="color:#7ab3ff; margin:0.2rem 0 0.5rem;">${game.role}</div>
-                    <div class="game-stats">
-                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number">${stats.playing.toLocaleString()}</span> <span style="font-size:0.7rem;">playing</span></div>
-                        <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${stats.favorites.toLocaleString()}</span> <span style="font-size:0.7rem;">favs</span></div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="${chartId}" style="width:100%; height:150px;"></canvas>
-                    </div>
-                    <div class="btn-group">
-                        <a href="${game.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
-                        <a href="${game.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>
+                    <img class="game-thumb" src="${thumbUrl}" alt="${game.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/0a1a2f/00a0ff?text=Cover+Error'">
+                    <div class="card-body">
+                        <div class="project-name">${game.name}</div>
+                        <div class="project-role"><i class="fas fa-crown"></i> ${game.role}</div>
+                        <div class="btn-group">
+                            <a href="${game.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+                            <a href="${game.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>
+                        </div>
                     </div>
                 </div>
             `;
         }
         container.innerHTML = cardsHtml;
-        
-        // init charts
-        for(let game of releaseProjects) {
-            const stats = statsMap.get(game.robloxId) || {playing:0, favorites:0};
-            const { labels, data } = generateTrend(stats.playing);
-            const chartId = `chart-${game.robloxId}`;
-            const ctx = document.getElementById(chartId)?.getContext('2d');
-            if(ctx) {
-                if(charts[chartId]) charts[chartId].destroy();
-                charts[chartId] = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Active Players',
-                            data: data,
-                            borderColor: '#00a0ff',
-                            backgroundColor: 'rgba(0,160,255,0.08)',
-                            borderWidth: 2,
-                            pointBackgroundColor: '#3b82f6',
-                            pointBorderColor: '#ffffff',
-                            pointRadius: 3,
-                            tension: 0.3,
-                            fill: true
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: true,
-                        plugins: { legend: { labels: { color: '#bbddff', font: { size: 9 } } } },
-                        scales: { y: { grid: { color: '#1e3a5f' }, ticks: { color: '#bbddff' } }, x: { ticks: { color: '#bbddff', font: { size: 8 } } } }
-                    }
-                });
-            }
-        }
     }
 
-    function renderStaticGrid(containerId, projects) {
+    // Render dev / past projects (no thumbnail, just Discord icon placeholder)
+    function renderStatic(containerId, projects, hasRoblox = false) {
         const container = document.getElementById(containerId);
-        if(!container) return;
-        container.innerHTML = projects.map(proj => `
-            <div class="project-card">
-                <div style="font-size:1.5rem; font-weight:700;">${proj.name}</div>
-                <div style="color:#7ab3ff; margin:0.3rem 0;">${proj.role}</div>
-                <div class="btn-group" style="margin-top:1rem;">
-                    <a href="${proj.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
-                    ${proj.robloxUrl ? `<a href="${proj.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>` : ''}
+        if (!container) return;
+        let html = '';
+        for (let proj of projects) {
+            html += `
+                <div class="project-card">
+                    <div class="game-thumb" style="display: flex; align-items: center; justify-content: center; background: #0a1a2f;">
+                        <i class="fab fa-discord" style="font-size: 3.5rem; color: #00a0ff;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div class="project-name">${proj.name}</div>
+                        <div class="project-role"><i class="fas fa-tasks"></i> ${proj.role}</div>
+                        <div class="btn-group">
+                            <a href="${proj.discord}" target="_blank" class="btn-discord"><i class="fab fa-discord"></i> Discord</a>
+                            ${proj.robloxUrl ? `<a href="${proj.robloxUrl}" target="_blank" class="btn-roblox"><i class="fas fa-gamepad"></i> Roblox</a>` : ''}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }
+        container.innerHTML = html;
     }
 
-    renderStaticGrid('devGrid', devProjects);
-    renderStaticGrid('pastGrid', pastProjects);
-    renderReleaseGrid();
+    renderStatic('devGrid', devProjects);
+    renderStatic('pastGrid', pastProjects);
+    renderRelease();  // load thumbnails for Release
 
-    // auto refresh every 60 sec
-    let interval = setInterval(() => {
-        const active = document.querySelector('.page.active-page');
-        if(active && active.id === 'released-page') renderReleaseGrid();
-    }, 60000);
-
-    const manual = document.getElementById('manualRefresh');
-    if(manual) manual.addEventListener('click', () => renderReleaseGrid());
-
-    // PAGE SWITCHING
+    // ========== PAGE SWITCHING (new nav) ==========
     const pages = {
         home: document.getElementById('home-page'),
         released: document.getElementById('released-page'),
@@ -642,20 +561,26 @@
         past: document.getElementById('past-page'),
         contact: document.getElementById('contact-page')
     };
+
     function switchPage(pageId) {
         Object.values(pages).forEach(p => p.classList.remove('active-page'));
         pages[pageId].classList.add('active-page');
-        document.querySelectorAll('.luxury-nav a').forEach(link => {
+        document.querySelectorAll('.nova-nav a').forEach(link => {
             link.classList.remove('active');
-            if(link.getAttribute('data-page') === pageId) link.classList.add('active');
+            if (link.getAttribute('data-page') === pageId) link.classList.add('active');
         });
-        if(pageId === 'released') renderReleaseGrid();
+        // re-render release thumbnails only if needed (already there, but if you want fresh each time)
+        if (pageId === 'released') {
+            // optional: refresh thumbnails (but not required)
+            // renderRelease();
+        }
     }
-    document.querySelectorAll('.luxury-nav a').forEach(link => {
+
+    document.querySelectorAll('.nova-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const page = link.getAttribute('data-page');
-            if(page) switchPage(page);
+            if (page) switchPage(page);
         });
     });
 </script>
