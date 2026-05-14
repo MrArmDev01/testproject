@@ -2,340 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MR. ARM | Live Discord Manager Portfolio | Real Roblox Stats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>MR. ARM | Executive Portfolio</title>
+    <!-- Google Fonts + Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js for trend graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #010101;
-            color: #f0f4ff;
-            overflow-x: hidden;
-        }
-
-        .premium-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 30% 40%, #0a0f1f 0%, #000000 100%);
-            z-index: -2;
-        }
-
-        .premium-bg::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 40% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 60%);
-            animation: slowDrift 30s infinite alternate;
-        }
-
-        @keyframes slowDrift {
-            0% { transform: translate(-5%, -3%) scale(1); opacity: 0.4; }
-            100% { transform: translate(5%, 3%) scale(1.3); opacity: 0.9; }
-        }
-
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        .particle {
-            position: absolute;
-            background: rgba(59,130,246,0.25);
-            border-radius: 50%;
-            animation: floatParticle 18s infinite linear;
-        }
-        @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
-        }
-
-        .luxury-nav {
-            position: fixed;
-            top: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            max-width: 1100px;
-            background: rgba(8, 12, 25, 0.8);
-            backdrop-filter: blur(24px);
-            border-radius: 80px;
-            border: 0.5px solid rgba(59, 130, 246, 0.4);
-            padding: 0.7rem 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 2.2rem;
-            z-index: 1000;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        .luxury-nav a {
-            color: #cbd5f0;
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            font-size: 0.85rem;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            padding: 0.4rem 0;
-            position: relative;
-        }
-
-        .luxury-nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #60a5fa);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .luxury-nav a:hover::before, .luxury-nav a.active::before {
-            width: 80%;
-        }
-
-        .luxury-nav a:hover, .luxury-nav a.active {
-            color: white;
-            text-shadow: 0 0 10px #3b82f6;
-        }
-
-        .page-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 7rem 2rem 4rem 2rem;
-        }
-
-        .page {
-            display: none;
-            animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .active-page {
-            display: block;
-        }
-
-        @keyframes pageEnter {
-            0% { opacity: 0; transform: scale(0.98) translateY(25px); filter: blur(3px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -1.5px;
-        }
-
-        .grad-lux {
-            background: linear-gradient(135deg, #ffffff, #60a5fa, #3b82f6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        .stat-row {
-            display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: rgba(15, 25, 45, 0.55);
-            backdrop-filter: blur(10px);
-            border-radius: 1.5rem;
-            padding: 1rem 2rem;
-            border: 0.5px solid rgba(59,130,246,0.3);
-            transition: 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            border-color: #3b82f6;
-        }
-
-        .refresh-btn {
-            background: rgba(59,130,246,0.2);
-            border: 1px solid #3b82f6;
-            padding: 0.5rem 1.2rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            margin-left: 1rem;
-            transition: 0.2s;
-        }
-        .refresh-btn:hover {
-            background: #3b82f6;
-            transform: scale(1.02);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .project-card-lux {
-            background: rgba(10, 16, 28, 0.7);
-            backdrop-filter: blur(14px);
-            border-radius: 2rem;
-            padding: 1.8rem;
-            border: 0.5px solid rgba(59,130,246,0.2);
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
-
-        .project-card-lux:hover {
-            border-color: #3b82f6;
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 30px 40px -20px rgba(0, 100, 255, 0.4);
-        }
-
-        .game-stats {
-            display: flex;
-            gap: 1.2rem;
-            margin: 1rem 0;
-            padding: 0.8rem 0;
-            border-top: 1px solid rgba(59,130,246,0.2);
-            border-bottom: 1px solid rgba(59,130,246,0.2);
-            flex-wrap: wrap;
-        }
-
-        .stat-bubble {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #010101; color: #f0f4ff; overflow-x: hidden; }
+        .premium-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 30% 40%, #0a0f1f 0%, #000000 100%); z-index: -2; }
+        .premium-bg::before { content: ''; position: absolute; width: 200%; height: 200%; background: radial-gradient(circle at 40% 50%, rgba(0, 100, 255, 0.1) 0%, transparent 60%); animation: slowDrift 30s infinite alternate; }
+        @keyframes slowDrift { 0% { transform: translate(-5%, -3%) scale(1); opacity: 0.4; } 100% { transform: translate(5%, 3%) scale(1.3); opacity: 0.9; } }
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .particle { position: absolute; background: rgba(59,130,246,0.25); border-radius: 50%; animation: floatParticle 18s infinite linear; }
+        @keyframes floatParticle { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.5; } 90% { opacity: 0.5; } 100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; } }
+        .luxury-nav { position: fixed; top: 25px; left: 50%; transform: translateX(-50%); width: 85%; max-width: 1100px; background: rgba(8, 12, 25, 0.8); backdrop-filter: blur(24px); border-radius: 80px; border: 0.5px solid rgba(59, 130, 246, 0.4); padding: 0.7rem 2rem; display: flex; justify-content: center; gap: 2.2rem; z-index: 1000; box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
+        .luxury-nav a { color: #cbd5f0; text-decoration: none; font-weight: 500; letter-spacing: 0.5px; font-size: 0.85rem; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1); padding: 0.4rem 0; position: relative; }
+        .luxury-nav a::before { content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px; background: linear-gradient(90deg, #3b82f6, #60a5fa); transition: all 0.3s ease; transform: translateX(-50%); }
+        .luxury-nav a:hover::before, .luxury-nav a.active::before { width: 80%; }
+        .luxury-nav a:hover, .luxury-nav a.active { color: white; text-shadow: 0 0 10px #3b82f6; }
+        .page-container { max-width: 1400px; margin: 0 auto; padding: 7rem 2rem 4rem 2rem; }
+        .page { display: none; animation: pageEnter 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .active-page { display: block; }
+        @keyframes pageEnter { 0% { opacity: 0; transform: scale(0.98) translateY(25px); filter: blur(3px); } 100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); } }
+        .hero-title { font-size: 4rem; font-weight: 800; line-height: 1.2; letter-spacing: -1.5px; }
+        .grad-lux { background: linear-gradient(135deg, #ffffff, #60a5fa, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3s infinite; }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        .stat-row { display: flex; gap: 1.5rem; margin: 2rem 0; flex-wrap: wrap; }
+        .stat-card { background: rgba(15, 25, 45, 0.55); backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 1rem 2rem; border: 0.5px solid rgba(59,130,246,0.3); transition: 0.3s; }
+        .stat-card:hover { transform: translateY(-3px); border-color: #3b82f6; }
+        .refresh-btn { background: rgba(59,130,246,0.2); border: 1px solid #3b82f6; padding: 0.5rem 1.2rem; border-radius: 2rem; cursor: pointer; font-size: 0.8rem; transition: 0.2s; }
+        .refresh-btn:hover { background: #3b82f6; transform: scale(1.02); }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
+        .project-card-lux { background: rgba(10, 16, 28, 0.7); backdrop-filter: blur(14px); border-radius: 2rem; padding: 1.8rem; border: 0.5px solid rgba(59,130,246,0.2); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+        .project-card-lux:hover { border-color: #3b82f6; transform: translateY(-8px) scale(1.01); box-shadow: 0 30px 40px -20px rgba(0, 100, 255, 0.4); }
+        .game-stats { display: flex; gap: 1.2rem; margin: 1rem 0; padding: 0.8rem 0; border-top: 1px solid rgba(59,130,246,0.2); border-bottom: 1px solid rgba(59,130,246,0.2); flex-wrap: wrap; }
+        .stat-bubble { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; background: rgba(0, 0, 0, 0.5); padding: 0.5rem 1.2rem; border-radius: 40px; }
         .stat-bubble i { font-size: 1rem; color: #60a5fa; }
         .stat-number { font-size: 1.2rem; font-weight: 800; color: #ffffff; }
-
-        .live-badge {
-            background: #10b981;
-            border-radius: 20px;
-            padding: 0.2rem 0.6rem;
-            font-size: 0.6rem;
-            margin-left: 0.5rem;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-discord, .btn-roblox {
-            padding: 0.6rem 1.3rem;
-            border-radius: 2rem;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.25s;
-        }
+        .btn-group { display: flex; gap: 1rem; margin-top: 1.2rem; flex-wrap: wrap; }
+        .btn-discord, .btn-roblox { padding: 0.6rem 1.3rem; border-radius: 2rem; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.25s; }
         .btn-discord { background: #5865F2; color: white; }
         .btn-roblox { background: #1f2b4e; color: white; border: 0.5px solid #3b82f6; }
         .btn-discord:hover, .btn-roblox:hover { transform: scale(1.03); filter: brightness(1.1); }
-
-        .chart-container {
-            background: rgba(8, 14, 26, 0.5);
-            border-radius: 1.5rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            border: 0.5px solid #1e3a8a;
-        }
-
+        .chart-container { background: rgba(8, 14, 26, 0.5); border-radius: 1.5rem; padding: 1rem; margin-top: 1rem; border: 0.5px solid #1e3a8a; }
         canvas { max-height: 170px; width: 100%; }
-
-        .contact-lux {
-            background: rgba(8, 14, 26, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            padding: 2rem;
-            border: 0.5px solid #1e3a8a;
-            max-width: 700px;
-            margin: 2rem auto;
-        }
-
-        input, textarea {
-            width: 100%;
-            background: #0a1022;
-            border: 1px solid #1f2a4a;
-            padding: 0.9rem;
-            border-radius: 1.2rem;
-            color: white;
-            margin-top: 0.8rem;
-            font-family: inherit;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 12px rgba(59,130,246,0.3);
-        }
-
-        button {
-            background: linear-gradient(95deg, #1e40af, #3b82f6);
-            width: 100%;
-            padding: 0.9rem;
-            border-radius: 2rem;
-            font-weight: bold;
-            border: none;
-            color: white;
-            margin-top: 1rem;
-            cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 0.5px solid #11223b;
-            font-size: 0.75rem;
-            color: #7e8fb0;
-        }
-
-        .loading-overlay {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        @media (max-width: 800px) {
-            .luxury-nav { gap: 1rem; width: 95%; padding: 0.5rem 0.8rem; overflow-x: auto; }
-            .hero-title { font-size: 2.2rem; }
-            .page-container { padding-top: 6rem; }
-            .project-grid { grid-template-columns: 1fr; }
-        }
+        .contact-lux { background: rgba(8, 14, 26, 0.6); backdrop-filter: blur(20px); border-radius: 2rem; padding: 2rem; border: 0.5px solid #1e3a8a; max-width: 700px; margin: 2rem auto; }
+        input, textarea { width: 100%; background: #0a1022; border: 1px solid #1f2a4a; padding: 0.9rem; border-radius: 1.2rem; color: white; margin-top: 0.8rem; font-family: inherit; }
+        input:focus, textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 12px rgba(59,130,246,0.3); }
+        button { background: linear-gradient(95deg, #1e40af, #3b82f6); width: 100%; padding: 0.9rem; border-radius: 2rem; font-weight: bold; border: none; color: white; margin-top: 1rem; cursor: pointer; }
+        footer { text-align: center; padding: 2rem; margin-top: 3rem; border-top: 0.5px solid #11223b; font-size: 0.75rem; color: #7e8fb0; }
+        .loading-overlay { text-align: center; padding: 2rem; }
+        .live-badge { background: #10b981; border-radius: 20px; padding: 0.2rem 0.6rem; font-size: 0.6rem; margin-left: 0.5rem; vertical-align: middle; }
+        @media (max-width: 800px) { .luxury-nav { gap: 1rem; width: 95%; padding: 0.5rem 0.8rem; overflow-x: auto; } .hero-title { font-size: 2.2rem; } .page-container { padding-top: 6rem; } .project-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -375,7 +96,7 @@
         <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 1rem;">
             <div>
                 <h2 style="font-size: 2rem; font-weight: 600;">RELEASE PROJECTS</h2>
-                <p>Live player counts from Roblox API · Auto-refresh on page view</p>
+                <p>Live player counts from Roblox API · Auto-refresh every 60 seconds</p>
             </div>
             <button class="refresh-btn" id="manualRefreshBtn"><i class="fas fa-sync-alt"></i> Refresh Now</button>
         </div>
@@ -411,9 +132,10 @@
 </div>
 
 <script>
-    // Particles
+    // Particles background
     function createParticles() {
         const container = document.getElementById('particles');
+        if(!container) return;
         for(let i = 0; i < 50; i++) {
             const p = document.createElement('div');
             p.className = 'particle';
@@ -429,7 +151,7 @@
     }
     createParticles();
 
-    // Webhook
+    // Webhook logic
     const WEBHOOK_URL = "https://discord.com/api/webhooks/1503653994512257136/JLEjYP83LDss0hAzIPW8dcHbwuGXLPuuvRRN_mIKCTAtw377iarDeCWORmJFdtmEe2Y8";
     const sendBtn = document.getElementById('sendWebhookBtn');
     const statusSpan = document.getElementById('webhookStatus');
@@ -493,41 +215,38 @@
     ];
 
     let charts = {};
+    let refreshInterval = null;
 
-    // REAL Roblox API fetch - returns actual live data
+    // Improved Roblox API fetch using multiple endpoints
     async function fetchRealRobloxStats(robloxId) {
+        // Try primary endpoint
+        const primaryUrl = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
         try {
-            // Using multiple endpoints for better success rate
-            const url = `https://games.roblox.com/v1/games?universeIds=${robloxId}`;
-            const response = await fetch(url, {
-                headers: { 'Accept': 'application/json' }
-            });
+            const response = await fetch(primaryUrl);
             const data = await response.json();
-            
             if (data.data && data.data.length > 0) {
                 const game = data.data[0];
                 let playing = game.playing || 0;
                 let favorites = game.favoritedCount || 0;
-                
-                // If playing is 0, try alternative endpoint for universe stats
-                if (playing === 0) {
-                    try {
-                        const altUrl = `https://games.roblox.com/v1/games/${robloxId}/servers/Public?limit=10`;
-                        const altRes = await fetch(altUrl);
-                        const altData = await altRes.json();
-                        if (altData.data) {
-                            playing = altData.data.reduce((sum, server) => sum + (server.playing || 0), 0);
-                        }
-                    } catch(e) {}
-                }
-                
                 return { playing, favorites, success: true };
             }
-            return { playing: 0, favorites: 0, success: false };
         } catch (error) {
-            console.error(`Error fetching ${robloxId}:`, error);
-            return { playing: 0, favorites: 0, success: false };
+            console.warn(`Primary API failed for ${robloxId}:`, error);
         }
+
+        // Try Roproxy as fallback
+        const proxyUrl = `https://api.roprox.io/games/${robloxId}`;
+        try {
+            const proxyResponse = await fetch(proxyUrl);
+            const proxyData = await proxyResponse.json();
+            if (proxyData && typeof proxyData.playing !== 'undefined') {
+                return { playing: proxyData.playing || 0, favorites: proxyData.favorites || 0, success: true };
+            }
+        } catch (proxyError) {
+            console.warn(`Roproxy failed for ${robloxId}:`, proxyError);
+        }
+
+        return { playing: 0, favorites: 0, success: false };
     }
 
     // Generate trend based on real data with historical simulation
@@ -547,31 +266,32 @@
     async function renderReleaseWithRealStats() {
         const container = document.getElementById('released-live-grid');
         if (!container) return;
-        
+
         container.innerHTML = '<div class="loading-overlay"><i class="fas fa-spinner fa-pulse"></i> Fetching live data from Roblox API...</div>';
-        
+
         let cardsHtml = '';
         let statsData = [];
-        
+
         for (let game of releasedGames) {
             const stats = await fetchRealRobloxStats(game.robloxId);
             statsData.push({ game, stats });
         }
-        
+
         for (let item of statsData) {
             const { game, stats } = item;
-            const { labels, data: trendData } = generateTrendData(stats.playing);
             const chartId = `chart-${game.robloxId}`;
             const liveClass = stats.playing > 0 ? 'live-badge' : '';
-            const liveText = stats.playing > 0 ? '<span class="live-badge">LIVE</span>' : '';
-            
+            const liveText = stats.playing > 0 ? '<span class="live-badge"><i class="fas fa-circle" style="font-size: 0.5rem; vertical-align: middle;"></i> LIVE</span>' : '';
+            const playingFormatted = stats.playing.toLocaleString();
+            const favoritesFormatted = stats.favorites.toLocaleString();
+
             cardsHtml += `
                 <div class="project-card-lux">
                     <div style="font-size:1.6rem; font-weight:700;">${game.name} ${liveText}</div>
                     <div style="color:#8aabff; margin:0.2rem 0 0.5rem 0;">${game.role}</div>
                     <div class="game-stats">
-                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number" id="playing-${game.robloxId}">${stats.playing.toLocaleString()}</span> <span style="font-size:0.75rem;">playing now</span></div>
-                        <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${stats.favorites.toLocaleString()}</span> <span style="font-size:0.75rem;">favorites</span></div>
+                        <div class="stat-bubble"><i class="fas fa-users"></i> <span class="stat-number" id="playing-${game.robloxId}">${playingFormatted}</span> <span style="font-size:0.75rem;">playing now</span></div>
+                        <div class="stat-bubble"><i class="fas fa-heart"></i> <span class="stat-number">${favoritesFormatted}</span> <span style="font-size:0.75rem;">favorites</span></div>
                     </div>
                     <div class="chart-container">
                         <canvas id="${chartId}" style="width:100%; height:160px;"></canvas>
@@ -583,9 +303,9 @@
                 </div>
             `;
         }
-        
+
         container.innerHTML = cardsHtml;
-        
+
         // Initialize charts
         for (let item of statsData) {
             const { game, stats } = item;
@@ -615,12 +335,12 @@
                     options: {
                         responsive: true,
                         maintainAspectRatio: true,
-                        plugins: { 
+                        plugins: {
                             legend: { labels: { color: '#bbd9ff', font: { size: 10 } } },
                             tooltip: { backgroundColor: '#0a1022', titleColor: '#60a5fa' }
                         },
-                        scales: { 
-                            y: { grid: { color: '#1f2a4e' }, ticks: { color: '#9bb5ff', callback: (v) => v.toLocaleString() } }, 
+                        scales: {
+                            y: { grid: { color: '#1f2a4e' }, ticks: { color: '#9bb5ff', callback: (v) => v.toLocaleString() } },
                             x: { ticks: { color: '#9bb5ff', font: { size: 9 } } }
                         }
                     }
@@ -646,9 +366,18 @@
 
     renderStatic('dev-grid', devProjects);
     renderStatic('past-grid', pastProjects);
-    
-    // Initial load
+
+    // Initial load for release page
     renderReleaseWithRealStats();
+
+    // Auto-refresh every 60 seconds
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshInterval = setInterval(() => {
+        const activePage = document.querySelector('.page.active-page');
+        if (activePage && activePage.id === 'released-page') {
+            renderReleaseWithRealStats();
+        }
+    }, 60000);
 
     // Manual refresh
     const refreshBtn = document.getElementById('manualRefreshBtn');
@@ -658,7 +387,7 @@
         });
     }
 
-    // Page switching
+    // Page switching with cleanup
     const pages = {
         home: document.getElementById('home-page'),
         released: document.getElementById('released-page'),
@@ -666,7 +395,7 @@
         past: document.getElementById('past-page'),
         contact: document.getElementById('contact-page')
     };
-    
+
     function switchPage(pageId) {
         Object.values(pages).forEach(p => {
             p.classList.remove('active-page');
@@ -680,7 +409,7 @@
             renderReleaseWithRealStats();
         }
     }
-    
+
     document.querySelectorAll('.luxury-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
